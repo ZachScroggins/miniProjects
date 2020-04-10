@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Link from '../components/Link';
+import Link from '../src/components/Link';
 
 // import Layout from '../components/layout/Layout';
 
