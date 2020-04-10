@@ -19,10 +19,11 @@ import HomeIcon from '@material-ui/icons/Home';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import PaletteIcon from '@material-ui/icons/Palette';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness5Icon from '@material-ui/icons/Brightness5';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import CodeIcon from '@material-ui/icons/Code';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
@@ -101,8 +102,8 @@ function Layout(props) {
     <div>
       <div className={classes.toolbar}>
         <Box p={1} pt={2} pl={2} display='flex'>
-          <Box pr={2}>
-            <BorderColorIcon />
+          <Box pr={3}>
+            <EmojiPeopleIcon />
           </Box>
           <Typography variant='h5'>miniCMS</Typography>
         </Box>
@@ -150,9 +151,13 @@ function Layout(props) {
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <Brightness4Icon />
+            {theme.palette.type === 'light' ? (
+              <Brightness4Icon />
+            ) : (
+              <Brightness5Icon />
+            )}
           </ListItemIcon>
-          <ListItemText primary='Day/Night' />
+          <ListItemText primary='Dark/Light' />
         </ListItem>
       </List>
       <Divider />
@@ -241,7 +246,11 @@ function Layout(props) {
             </Tooltip>
             <Tooltip title='Dark/Light' enterDelay={300}>
               <IconButton color='inherit' aria-label='darkLight'>
-                <Brightness4Icon />
+                {theme.palette.type === 'light' ? (
+                  <Brightness4Icon />
+                ) : (
+                  <Brightness5Icon />
+                )}
               </IconButton>
             </Tooltip>
           </Hidden>
