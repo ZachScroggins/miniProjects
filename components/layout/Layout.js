@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import Link from 'next/link';
+// import Link from 'next/link';
+import Link from '../Link';
 
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -21,31 +23,32 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import CodeIcon from '@material-ui/icons/Code';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
+
+let rendered = 0;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       display: 'none',
     },
   },
@@ -58,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  grow: {
+    flex: '1 1 auto',
+  },
 }));
 
 function ListItemLink(props) {
@@ -68,41 +74,66 @@ function Layout(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+
+  useEffect(() => {
+    rendered++;
+    console.log(`rendered ${rendered} times`);
+  });
 
   const drawer = (
     <div>
       <div className={classes.toolbar}>text</div>
       <Divider />
       <List component='nav'>
-        <Link href='/'>
-          <ListItem button>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary='Blog' />
-          </ListItem>
-        </Link>
-        <Link href='/addpost'>
-          <ListItem button>
-            <ListItemIcon>
-              <AddBoxIcon />
-            </ListItemIcon>
-            <ListItemText primary='Add Post' />
-          </ListItem>
-        </Link>
-        <Link href='/changecolor'>
-          <ListItem button>
-            <ListItemIcon>
-              <PaletteIcon />
-            </ListItemIcon>
-            <ListItemText primary='Change Color' />
-          </ListItem>
-        </Link>
+        <ListItem
+          button
+          component={Link}
+          naked
+          href='/'
+          // selected={selectedIndex === 0}
+          // onClick={(event) => handleListItemClick(event, 0)}
+        >
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary='Blog' />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          naked
+          href='/addpost'
+          // selected={selectedIndex === 1}
+          // onClick={(event) => handleListItemClick(event, 1)}
+        >
+          <ListItemIcon>
+            <AddBoxIcon />
+          </ListItemIcon>
+          <ListItemText primary='Add Post' />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          naked
+          href='/changecolor'
+          // selected={selectedIndex === 2}
+          // onClick={(event) => handleListItemClick(event, 2)}
+        >
+          <ListItemIcon>
+            <PaletteIcon />
+          </ListItemIcon>
+          <ListItemText primary='Change Color' />
+        </ListItem>
         <ListItem button>
           <ListItemIcon>
             <Brightness4Icon />
@@ -111,25 +142,25 @@ function Layout(props) {
         </ListItem>
       </List>
       <Divider />
-      <List>
-        <ListItemLink href='https://www.github.com'>
+      <List component='nav'>
+        <ListItem button component='a' href='https://www.github.com'>
           <ListItemIcon>
             <GitHubIcon />
           </ListItemIcon>
           <ListItemText primary='GitHub' />
-        </ListItemLink>
-        <ListItemLink href='https://codesandbox.io'>
+        </ListItem>
+        <ListItem button component='a' href='https://www.codesandbox.io'>
           <ListItemIcon>
             <CodeIcon />
           </ListItemIcon>
           <ListItemText primary='CodeSandbox' />
-        </ListItemLink>
-        <ListItemLink href='https://zachscroggins.com'>
+        </ListItem>
+        <ListItem button component='a' href='https://www.zachscroggins.com'>
           <ListItemIcon>
             <ArrowBackIcon />
           </ListItemIcon>
           <ListItemText primary='Portfolio' />
-        </ListItemLink>
+        </ListItem>
       </List>
     </div>
   );
@@ -148,16 +179,23 @@ function Layout(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Container>
-            <Typography variant='h6' noWrap>
-              YourBlog
-            </Typography>
-          </Container>
+          <div className={classes.grow} />
+          <Tooltip title='Blog' enterDelay={300}>
+            <IconButton
+              color='inherit'
+              aria-label='blog'
+              component={Link}
+              naked
+              href='/'
+            >
+              <HomeIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label='mailbox folders'>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation='css'>
+        <Hidden mdUp implementation='css'>
           <Drawer
             container={container}
             variant='temporary'
@@ -170,11 +208,12 @@ function Layout(props) {
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
+            onClick={handleDrawerToggle}
           >
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation='css'>
+        <Hidden smDown implementation='css'>
           <Drawer
             classes={{
               paper: classes.drawerPaper,

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import Link from 'next/link';
+import Link from '../components/Link';
 
-import Layout from '../components/layout/Layout';
+// import Layout from '../components/layout/Layout';
 
 import { Container, Grid, Box, Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -28,13 +28,15 @@ export default function Index() {
   // });
 
   return (
-    <Layout>
+    <>
       <Container>
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Typography variant='h5' component='h1'>
               Next.js SSG Material-UI Firebase Starter
             </Typography>
+            <Link href='/addpost'>Go to the addpost page</Link>
+            <Link href='https://www.github.com'>Go to Github</Link>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Box bgcolor='primary.main' color='primary.contrastText' p={2}>
@@ -186,6 +188,6 @@ export default function Index() {
           </Grid>
         </Grid>
       </Container>
-    </Layout>
+    </>
   );
 }
