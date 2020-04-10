@@ -22,33 +22,35 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import CodeIcon from '@material-ui/icons/Code';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
-
-let rendered = 0;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
   drawer: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
   appBar: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       display: 'none',
     },
   },
@@ -66,10 +68,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ListItemLink(props) {
-  return <ListItem button component='a' {...props} />;
-}
-
 function Layout(props) {
   const { container } = props;
   const classes = useStyles();
@@ -77,22 +75,38 @@ function Layout(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };
 
-  useEffect(() => {
-    rendered++;
-    console.log(`rendered ${rendered} times`);
-  });
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  let appBarTitle;
+
+  if (selectedIndex === 0) {
+    appBarTitle = 'Blog';
+  }
+
+  if (selectedIndex === 1) {
+    appBarTitle = 'Add Post';
+  }
+
+  if (selectedIndex === 2) {
+    appBarTitle = 'Change Color';
+  }
 
   const drawer = (
     <div>
-      <div className={classes.toolbar}>text</div>
+      <div className={classes.toolbar}>
+        <Box p={1} pt={2} pl={2} display='flex'>
+          <Box pr={2}>
+            <BorderColorIcon />
+          </Box>
+          <Typography variant='h5'>miniCMS</Typography>
+        </Box>
+      </div>
       <Divider />
       <List component='nav'>
         <ListItem
@@ -100,8 +114,8 @@ function Layout(props) {
           component={Link}
           naked
           href='/'
-          // selected={selectedIndex === 0}
-          // onClick={(event) => handleListItemClick(event, 0)}
+          selected={selectedIndex === 0}
+          onClick={(event) => handleListItemClick(event, 0)}
         >
           <ListItemIcon>
             <HomeIcon />
@@ -113,8 +127,8 @@ function Layout(props) {
           component={Link}
           naked
           href='/addpost'
-          // selected={selectedIndex === 1}
-          // onClick={(event) => handleListItemClick(event, 1)}
+          selected={selectedIndex === 1}
+          onClick={(event) => handleListItemClick(event, 1)}
         >
           <ListItemIcon>
             <AddBoxIcon />
@@ -126,8 +140,8 @@ function Layout(props) {
           component={Link}
           naked
           href='/changecolor'
-          // selected={selectedIndex === 2}
-          // onClick={(event) => handleListItemClick(event, 2)}
+          selected={selectedIndex === 2}
+          onClick={(event) => handleListItemClick(event, 2)}
         >
           <ListItemIcon>
             <PaletteIcon />
@@ -179,18 +193,58 @@ function Layout(props) {
           >
             <MenuIcon />
           </IconButton>
+          <Hidden xsDown>
+            <Typography variant='h6' noWrap>
+              {appBarTitle}
+            </Typography>
+          </Hidden>
           <div className={classes.grow} />
-          <Tooltip title='Blog' enterDelay={300}>
-            <IconButton
-              color='inherit'
-              aria-label='blog'
-              component={Link}
-              naked
-              href='/'
-            >
-              <HomeIcon />
-            </IconButton>
-          </Tooltip>
+          <Hidden lgUp>
+            <Tooltip title='Blog' enterDelay={300}>
+              <IconButton
+                color='inherit'
+                aria-label='blog'
+                component={Link}
+                naked
+                href='/'
+                onClick={(event) => handleListItemClick(event, 0)}
+                color={selectedIndex === 0 ? 'secondary' : 'inherit'}
+              >
+                <HomeIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title='Add Post' enterDelay={300}>
+              <IconButton
+                color='inherit'
+                aria-label='addPost'
+                component={Link}
+                naked
+                href='/addpost'
+                onClick={(event) => handleListItemClick(event, 1)}
+                color={selectedIndex === 1 ? 'secondary' : 'inherit'}
+              >
+                <AddBoxIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title='Change Colors' enterDelay={300}>
+              <IconButton
+                color='inherit'
+                aria-label='changeColors'
+                component={Link}
+                naked
+                href='/changecolor'
+                onClick={(event) => handleListItemClick(event, 2)}
+                color={selectedIndex === 2 ? 'secondary' : 'inherit'}
+              >
+                <PaletteIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title='Dark/Light' enterDelay={300}>
+              <IconButton color='inherit' aria-label='darkLight'>
+                <Brightness4Icon />
+              </IconButton>
+            </Tooltip>
+          </Hidden>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label='mailbox folders'>
@@ -213,7 +267,7 @@ function Layout(props) {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden smDown implementation='css'>
+        <Hidden mdDown implementation='css'>
           <Drawer
             classes={{
               paper: classes.drawerPaper,
