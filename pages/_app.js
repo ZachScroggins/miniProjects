@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Layout from '../src/components/layout/Layout';
 import ColorState from '../src/context/color/ColorState';
 
-import ThemeProvider from '../src/ThemeProvider';
+import ThemeProvider from '../src/components/ThemeProvider';
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;

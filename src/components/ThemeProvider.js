@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import ColorContext from './context/color/colorContext';
+import ColorContext from '../context/color/colorContext';
 import {
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,
@@ -25,5 +25,7 @@ const ThemeProvider = (props) => {
 
   return <MuiThemeProvider theme={theme}>{props.children}</MuiThemeProvider>;
 };
+
+export const themeColor = '#3f51b5';
 
 export default ThemeProvider;

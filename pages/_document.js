@@ -1,6 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
+import { themeColor } from '../src/components/ThemeProvider';
 
 export default class MyDocument extends Document {
   render() {
@@ -8,6 +9,7 @@ export default class MyDocument extends Document {
       <html lang='en'>
         <Head>
           <meta name='description' content='mini content management system' />
+          <meta name='theme-color' content={themeColor} />
           <link
             rel='stylesheet'
             href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
