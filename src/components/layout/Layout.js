@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-// import Link from 'next/link';
 import Link from '../Link';
+import ColorContext from '../../context/color/colorContext';
 
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -69,12 +69,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let prefersDarkMode = false;
+
 function Layout(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const colorContext = useContext(ColorContext);
+  const { setType } = colorContext;
+  let appBarTitle;
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -84,7 +89,11 @@ function Layout(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  let appBarTitle;
+  const handleDarkLight = (event) => {
+    event.preventDefault();
+    prefersDarkMode = !prefersDarkMode;
+    setType(prefersDarkMode);
+  };
 
   if (selectedIndex === 0) {
     appBarTitle = 'Blog';
@@ -149,7 +158,7 @@ function Layout(props) {
           </ListItemIcon>
           <ListItemText primary='Change Color' />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={(event) => handleDarkLight(event)}>
           <ListItemIcon>
             {theme.palette.type === 'light' ? (
               <Brightness4Icon />
@@ -245,7 +254,11 @@ function Layout(props) {
               </IconButton>
             </Tooltip>
             <Tooltip title='Dark/Light' enterDelay={300}>
-              <IconButton color='inherit' aria-label='darkLight'>
+              <IconButton
+                color='inherit'
+                aria-label='darkLight'
+                onClick={(event) => handleDarkLight(event)}
+              >
                 {theme.palette.type === 'light' ? (
                   <Brightness4Icon />
                 ) : (

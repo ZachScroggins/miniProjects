@@ -9,21 +9,32 @@ import {
 
 const ColorState = (props) => {
   const initialState = {
-    palette: {},
+    primaryMain: '#3f51b5',
+    secondaryMain: '#f50057',
+    type: 'light',
   };
 
   const [state, dispatch] = useReducer(ColorReducer, initialState);
 
-  const setColor = () => {};
+  const setColor = (primary, secondary) => {};
 
-  const clearColor = () => {};
+  const clearColor = () => dispatch({ type: CLEAR_PALETTE_COLOR });
 
-  const setType = () => {};
+  const setType = (prefersDarkMode) => {
+    if (prefersDarkMode === true) {
+      dispatch({ type: SET_PALETTE_TYPE, payload: 'dark' });
+    }
+    if (prefersDarkMode === false) {
+      dispatch({ type: SET_PALETTE_TYPE, payload: 'light' });
+    }
+  };
 
   return (
     <ColorContext.Provider
       value={{
-        palette: state.palette,
+        primaryMain: state.primaryMain,
+        secondaryMain: state.secondaryMain,
+        type: state.type,
         setColor,
         clearColor,
         setType,
