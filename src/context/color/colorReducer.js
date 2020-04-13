@@ -9,12 +9,14 @@ export default (state, action) => {
     case SET_PALETTE_COLOR:
       return {
         ...state,
-        palette: action.payload,
+        primaryMain: action.payload.primary,
+        secondaryMain: action.payload.secondary,
       };
     case CLEAR_PALETTE_COLOR:
       return {
         ...state,
-        palette: {},
+        primaryMain: action.payload.primary,
+        secondaryMain: action.payload.secondary,
       };
     case SET_PALETTE_TYPE:
       return {

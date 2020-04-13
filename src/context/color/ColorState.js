@@ -16,9 +16,23 @@ const ColorState = (props) => {
 
   const [state, dispatch] = useReducer(ColorReducer, initialState);
 
-  const setColor = (primary, secondary) => {};
+  const setColors = (primary, secondary) => {
+    const colors = {
+      primary,
+      secondary,
+    };
 
-  const clearColor = () => dispatch({ type: CLEAR_PALETTE_COLOR });
+    dispatch({ type: SET_PALETTE_COLOR, payload: colors });
+  };
+
+  const clearColors = () => {
+    const colors = {
+      primary: '#3f51b5',
+      secondary: '#f50057',
+    };
+
+    dispatch({ type: CLEAR_PALETTE_COLOR, payload: colors });
+  };
 
   const setType = (prefersDarkMode) => {
     if (prefersDarkMode === true) {
@@ -35,8 +49,8 @@ const ColorState = (props) => {
         primaryMain: state.primaryMain,
         secondaryMain: state.secondaryMain,
         type: state.type,
-        setColor,
-        clearColor,
+        setColors,
+        clearColors,
         setType,
       }}
     >

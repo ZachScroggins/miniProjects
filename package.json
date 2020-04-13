@@ -1,6 +1,6 @@
 {
-  "name": "nextjs-ssg-material-ui-firebase-starter",
-  "version": "0.1.0",
+  "name": "mini-cms",
+  "version": "1.0.0",
   "license": "MIT",
   "author": "Zach Scroggins",
   "private": true,

@@ -1,1 +1,1 @@
-# YourBlog
+# miniCMS
