@@ -4,16 +4,7 @@ import PropTypes from 'prop-types';
 import Link from '../Link';
 import ColorContext from '../../context/color/colorContext';
 
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import AddBoxIcon from '@material-ui/icons/AddBox';
@@ -24,12 +15,22 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import CodeIcon from '@material-ui/icons/Code';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
-import Toolbar from '@material-ui/core/Toolbar';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {
+  AppBar,
+  CssBaseline,
+  Divider,
+  Drawer,
+  Hidden,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Tooltip,
+  Typography,
+  Box,
+} from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -75,8 +76,8 @@ function Layout(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const colorContext = useContext(ColorContext);
   const { setType } = colorContext;
   let appBarTitle;

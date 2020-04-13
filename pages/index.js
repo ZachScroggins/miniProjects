@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import Link from '../src/components/Link';
 
-// import Layout from '../components/layout/Layout';
+import Link from '../src/components/Link';
 
 import { Container, Grid, Box, Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
