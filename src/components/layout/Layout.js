@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 
 import Link from '../Link';
+import { useLoaded } from '../UseLoaded';
 import ColorContext from '../../context/color/colorContext';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -70,21 +71,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-let prefersDarkMode = false;
+// let prefersDarkMode = false;
 
 function Layout(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
+  const router = useRouter();
+  const loaded = useLoaded();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const colorContext = useContext(ColorContext);
-  const { setType } = colorContext;
+  const { setType, type } = colorContext;
   let appBarTitle;
+  let prefersDarkMode;
 
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
-  };
+  if (type === 'light') {
+    prefersDarkMode = false;
+  } else {
+    prefersDarkMode = true;
+  }
+
+  useEffect(() => {
+    if (router.pathname === '/') {
+      setSelectedIndex(0);
+    }
+    if (router.pathname === '/addpost') {
+      setSelectedIndex(1);
+    }
+    if (router.pathname === '/changecolor') {
+      setSelectedIndex(2);
+    }
+  }, [router.pathname]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -126,7 +144,6 @@ function Layout(props) {
           naked
           href='/'
           selected={selectedIndex === 0}
-          onClick={(event) => handleListItemClick(event, 0)}
         >
           <ListItemIcon>
             <HomeIcon />
@@ -139,7 +156,6 @@ function Layout(props) {
           naked
           href='/addpost'
           selected={selectedIndex === 1}
-          onClick={(event) => handleListItemClick(event, 1)}
         >
           <ListItemIcon>
             <AddBoxIcon />
@@ -152,7 +168,6 @@ function Layout(props) {
           naked
           href='/changecolor'
           selected={selectedIndex === 2}
-          onClick={(event) => handleListItemClick(event, 2)}
         >
           <ListItemIcon>
             <PaletteIcon />
@@ -161,7 +176,7 @@ function Layout(props) {
         </ListItem>
         <ListItem button onClick={(event) => handleDarkLight(event)}>
           <ListItemIcon>
-            {theme.palette.type === 'light' ? (
+            {!prefersDarkMode && loaded ? (
               <Brightness4Icon />
             ) : (
               <Brightness5Icon />
@@ -222,7 +237,6 @@ function Layout(props) {
                 component={Link}
                 naked
                 href='/'
-                onClick={(event) => handleListItemClick(event, 0)}
                 color={selectedIndex === 0 ? 'secondary' : 'inherit'}
               >
                 <HomeIcon />
@@ -235,7 +249,6 @@ function Layout(props) {
                 component={Link}
                 naked
                 href='/addpost'
-                onClick={(event) => handleListItemClick(event, 1)}
                 color={selectedIndex === 1 ? 'secondary' : 'inherit'}
               >
                 <AddBoxIcon />
@@ -248,7 +261,6 @@ function Layout(props) {
                 component={Link}
                 naked
                 href='/changecolor'
-                onClick={(event) => handleListItemClick(event, 2)}
                 color={selectedIndex === 2 ? 'secondary' : 'inherit'}
               >
                 <PaletteIcon />
@@ -260,7 +272,7 @@ function Layout(props) {
                 aria-label='darkLight'
                 onClick={(event) => handleDarkLight(event)}
               >
-                {theme.palette.type === 'light' ? (
+                {!prefersDarkMode && loaded ? (
                   <Brightness4Icon />
                 ) : (
                   <Brightness5Icon />

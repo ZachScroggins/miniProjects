@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useMemo } from 'react';
 import ColorContext from './colorContext';
 import ColorReducer from './colorReducer';
 import {
@@ -8,10 +8,31 @@ import {
 } from '../types';
 
 const ColorState = (props) => {
+  let typeLS = null;
+  let colorsLS = null;
+  let primaryLS = null;
+  let secondaryLS = null;
+
+  useMemo(() => {
+    if (typeof window !== 'undefined') {
+      typeLS = localStorage.getItem('palette_type');
+    }
+  }, [typeLS]);
+
+  useMemo(() => {
+    if (typeof window !== 'undefined') {
+      colorsLS = JSON.parse(localStorage.getItem('palette_colors'));
+      if (colorsLS !== null) {
+        primaryLS = colorsLS.primary;
+        secondaryLS = colorsLS.secondary;
+      }
+    }
+  }, [colorsLS]);
+
   const initialState = {
-    primaryMain: '#3f51b5',
-    secondaryMain: '#f50057',
-    type: 'light',
+    primaryMain: primaryLS !== null ? primaryLS : '#3f51b5',
+    secondaryMain: secondaryLS !== null ? secondaryLS : '#f50057',
+    type: typeLS !== null ? typeLS : 'light',
   };
 
   const [state, dispatch] = useReducer(ColorReducer, initialState);
@@ -23,6 +44,10 @@ const ColorState = (props) => {
     };
 
     dispatch({ type: SET_PALETTE_COLOR, payload: colors });
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('palette_colors', JSON.stringify(colors));
+    }
   };
 
   const clearColors = () => {
@@ -32,14 +57,24 @@ const ColorState = (props) => {
     };
 
     dispatch({ type: CLEAR_PALETTE_COLOR, payload: colors });
+
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('palette_colors');
+    }
   };
 
   const setType = (prefersDarkMode) => {
     if (prefersDarkMode === true) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'dark' });
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('palette_type', 'dark');
+      }
     }
     if (prefersDarkMode === false) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'light' });
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('palette_type', 'light');
+      }
     }
   };
 
