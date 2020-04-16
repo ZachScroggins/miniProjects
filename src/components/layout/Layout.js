@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 
 import Link from '../Link';
-import { useLoaded } from '../UseLoaded';
+import useLoaded from '../../utils/useLoaded';
 import ColorContext from '../../context/color/colorContext';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -71,8 +71,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// let prefersDarkMode = false;
-
 function Layout(props) {
   const { container } = props;
   const classes = useStyles();
@@ -86,12 +84,6 @@ function Layout(props) {
   let appBarTitle;
   let prefersDarkMode;
 
-  if (type === 'light') {
-    prefersDarkMode = false;
-  } else {
-    prefersDarkMode = true;
-  }
-
   useEffect(() => {
     if (router.pathname === '/') {
       setSelectedIndex(0);
@@ -104,6 +96,22 @@ function Layout(props) {
     }
   }, [router.pathname]);
 
+  if (type === 'light') {
+    prefersDarkMode = false;
+  } else {
+    prefersDarkMode = true;
+  }
+
+  if (selectedIndex === 0) {
+    appBarTitle = 'Blog';
+  }
+  if (selectedIndex === 1) {
+    appBarTitle = 'Add Post';
+  }
+  if (selectedIndex === 2) {
+    appBarTitle = 'Change Color';
+  }
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -113,18 +121,6 @@ function Layout(props) {
     prefersDarkMode = !prefersDarkMode;
     setType(prefersDarkMode);
   };
-
-  if (selectedIndex === 0) {
-    appBarTitle = 'Blog';
-  }
-
-  if (selectedIndex === 1) {
-    appBarTitle = 'Add Post';
-  }
-
-  if (selectedIndex === 2) {
-    appBarTitle = 'Change Color';
-  }
 
   const drawer = (
     <div>

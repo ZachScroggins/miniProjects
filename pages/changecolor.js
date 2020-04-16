@@ -1,7 +1,5 @@
 import { useContext } from 'react';
-
 import ColorContext from '../src/context/color/colorContext';
-
 import {
   Typography,
   Container,

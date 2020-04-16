@@ -1,6 +1,8 @@
-import { useReducer, useMemo } from 'react';
+import { useReducer } from 'react';
 import ColorContext from './colorContext';
 import ColorReducer from './colorReducer';
+import checkClient from '../../utils/checkClient';
+import useClientMemo from '../../utils/useClientMemo';
 import {
   SET_PALETTE_COLOR,
   CLEAR_PALETTE_COLOR,
@@ -13,21 +15,17 @@ const ColorState = (props) => {
   let primaryLS = null;
   let secondaryLS = null;
 
-  useMemo(() => {
-    if (typeof window !== 'undefined') {
-      typeLS = localStorage.getItem('palette_type');
-    }
+  useClientMemo(() => {
+    typeLS = localStorage.getItem('palette_type');
   }, [typeLS]);
 
-  useMemo(() => {
-    if (typeof window !== 'undefined') {
-      colorsLS = JSON.parse(localStorage.getItem('palette_colors'));
-      if (colorsLS !== null) {
-        primaryLS = colorsLS.primary;
-        secondaryLS = colorsLS.secondary;
-      }
+  useClientMemo(() => {
+    colorsLS = JSON.parse(localStorage.getItem('palette_colors'));
+    if (colorsLS !== null) {
+      primaryLS = colorsLS.primary;
+      secondaryLS = colorsLS.secondary;
     }
-  }, [colorsLS]);
+  }, []);
 
   const initialState = {
     primaryMain: primaryLS !== null ? primaryLS : '#3f51b5',
@@ -45,9 +43,9 @@ const ColorState = (props) => {
 
     dispatch({ type: SET_PALETTE_COLOR, payload: colors });
 
-    if (typeof window !== 'undefined') {
+    checkClient(() => {
       localStorage.setItem('palette_colors', JSON.stringify(colors));
-    }
+    });
   };
 
   const clearColors = () => {
@@ -58,23 +56,25 @@ const ColorState = (props) => {
 
     dispatch({ type: CLEAR_PALETTE_COLOR, payload: colors });
 
-    if (typeof window !== 'undefined') {
+    checkClient(() => {
       localStorage.removeItem('palette_colors');
-    }
+    });
   };
 
   const setType = (prefersDarkMode) => {
     if (prefersDarkMode === true) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'dark' });
-      if (typeof window !== 'undefined') {
+
+      checkClient(() => {
         localStorage.setItem('palette_type', 'dark');
-      }
+      });
     }
     if (prefersDarkMode === false) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'light' });
-      if (typeof window !== 'undefined') {
+
+      checkClient(() => {
         localStorage.setItem('palette_type', 'light');
-      }
+      });
     }
   };
 
