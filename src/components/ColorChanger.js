@@ -175,7 +175,7 @@ function ColorChanger(props) {
 
     return (
       <Grid item xs={12} sm={6}>
-        <Box>
+        <Box pb={3}>
           <Typography
             component='label'
             gutterBottom
@@ -189,46 +189,47 @@ function ColorChanger(props) {
             value={intentInput}
             onChange={handleChangeColor(intent)}
             fullWidth
+            color={intent === 'primary' ? 'primary' : 'secondary'}
           />
-          <div className={classes.swatch}>
-            {hues.map((hue) => {
-              const shade =
-                intent === 'primary'
-                  ? shades[state.primaryShade]
-                  : shades[state.secondaryShade];
-              const backgroundColor = colors[hue][shade];
-
-              return (
-                <Tooltip placement='right' title={hue} key={hue}>
-                  <Radio
-                    className={classes.radio}
-                    color='default'
-                    checked={state[intent] === backgroundColor}
-                    onChange={handleChangeHue(intent)}
-                    value={hue}
-                    name={intent}
-                    aria-labelledby={`tooltip-${intent}-${hue}`}
-                    icon={
-                      <div
-                        className={classes.radioIcon}
-                        style={{ backgroundColor }}
-                      />
-                    }
-                    checkedIcon={
-                      <div
-                        className={classes.radioIconSelected}
-                        style={{ backgroundColor }}
-                      >
-                        <CheckIcon style={{ fontSize: 30 }} />
-                      </div>
-                    }
-                  />
-                </Tooltip>
-              );
-            })}
-          </div>
-          {colorBar(color)}
         </Box>
+        <div className={classes.swatch}>
+          {hues.map((hue) => {
+            const shade =
+              intent === 'primary'
+                ? shades[state.primaryShade]
+                : shades[state.secondaryShade];
+            const backgroundColor = colors[hue][shade];
+
+            return (
+              <Tooltip placement='right' title={hue} key={hue}>
+                <Radio
+                  className={classes.radio}
+                  color='default'
+                  checked={state[intent] === backgroundColor}
+                  onChange={handleChangeHue(intent)}
+                  value={hue}
+                  name={intent}
+                  aria-labelledby={`tooltip-${intent}-${hue}`}
+                  icon={
+                    <div
+                      className={classes.radioIcon}
+                      style={{ backgroundColor }}
+                    />
+                  }
+                  checkedIcon={
+                    <div
+                      className={classes.radioIconSelected}
+                      style={{ backgroundColor }}
+                    >
+                      <CheckIcon style={{ fontSize: 30 }} />
+                    </div>
+                  }
+                />
+              </Tooltip>
+            );
+          })}
+        </div>
+        {colorBar(color)}
       </Grid>
     );
   };
