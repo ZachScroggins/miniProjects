@@ -4,6 +4,7 @@ import {
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,
 } from '@material-ui/core/styles';
+import { green, orange, deepOrange } from '@material-ui/core/colors';
 
 const ThemeProvider = (props) => {
   const colorContext = useContext(ColorContext);

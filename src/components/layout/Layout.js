@@ -31,6 +31,7 @@ import {
   Tooltip,
   Typography,
   Box,
+  Container,
 } from '@material-ui/core';
 
 const drawerWidth = 240;
@@ -312,7 +313,7 @@ function Layout(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {props.children}
+        <Container maxWidth='lg'>{props.children}</Container>
       </main>
     </div>
   );
