@@ -16,6 +16,7 @@ import {
   Button,
   useMediaQuery,
   Paper,
+  Hidden,
 } from '@material-ui/core';
 
 const hues = Object.keys(colors).slice(1, 17);
@@ -289,6 +290,9 @@ function ColorChanger(props) {
           >
             Reset
           </Button>
+          <Hidden smDown>
+            <div style={{ width: '115px' }}></div>
+          </Hidden>
         </Grid>
       </Grid>
     </NoSsr>
