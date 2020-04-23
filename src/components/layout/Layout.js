@@ -138,7 +138,6 @@ function Layout(props) {
           </Box>
         </Box>
       </div>
-      <Divider />
       <List component='nav'>
         <ListItem button component={Link} naked href='/'>
           <ListItemIcon>
