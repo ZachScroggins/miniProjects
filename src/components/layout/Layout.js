@@ -66,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    [theme.breakpoints.up('lg')]: {
+      padding: theme.spacing(0),
+    },
   },
   grow: {
     flex: '1 1 auto',
@@ -126,48 +129,34 @@ function Layout(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar}>
-        <Box p={1} pt={2} pl={2} display='flex'>
-          <Box pr={3}>
+        <Box p={1} pt={2} pl={2} display='flex' bgcolor='primary.main'>
+          <Box pr={3} color='primary.contrastText'>
             <EmojiPeopleIcon />
           </Box>
-          <Typography variant='h5'>miniCMS</Typography>
+          <Box color='primary.contrastText'>
+            <Typography variant='h5'>YourBlog</Typography>
+          </Box>
         </Box>
       </div>
       <Divider />
       <List component='nav'>
-        <ListItem
-          button
-          component={Link}
-          naked
-          href='/'
-          selected={selectedIndex === 0}
-        >
+        <ListItem button component={Link} naked href='/'>
           <ListItemIcon>
-            <HomeIcon />
+            <HomeIcon color={selectedIndex === 0 ? 'secondary' : 'inherit'} />
           </ListItemIcon>
           <ListItemText primary='Blog' />
         </ListItem>
-        <ListItem
-          button
-          component={Link}
-          naked
-          href='/addpost'
-          selected={selectedIndex === 1}
-        >
+        <ListItem button component={Link} naked href='/addpost'>
           <ListItemIcon>
-            <AddBoxIcon />
+            <AddBoxIcon color={selectedIndex === 1 ? 'secondary' : 'inherit'} />
           </ListItemIcon>
           <ListItemText primary='Add Post' />
         </ListItem>
-        <ListItem
-          button
-          component={Link}
-          naked
-          href='/changecolor'
-          selected={selectedIndex === 2}
-        >
+        <ListItem button component={Link} naked href='/changecolor'>
           <ListItemIcon>
-            <PaletteIcon />
+            <PaletteIcon
+              color={selectedIndex === 2 ? 'secondary' : 'inherit'}
+            />
           </ListItemIcon>
           <ListItemText primary='Change Color' />
         </ListItem>
@@ -209,76 +198,78 @@ function Layout(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position='fixed' className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            edge='start'
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Hidden xsDown>
-            <Typography variant='h6' noWrap>
-              {appBarTitle}
-            </Typography>
-          </Hidden>
-          <div className={classes.grow} />
-          <Hidden lgUp>
-            <Tooltip title='Blog' enterDelay={300}>
-              <IconButton
-                color='inherit'
-                aria-label='blog'
-                component={Link}
-                naked
-                href='/'
-                color={selectedIndex === 0 ? 'secondary' : 'inherit'}
-              >
-                <HomeIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title='Add Post' enterDelay={300}>
-              <IconButton
-                color='inherit'
-                aria-label='addPost'
-                component={Link}
-                naked
-                href='/addpost'
-                color={selectedIndex === 1 ? 'secondary' : 'inherit'}
-              >
-                <AddBoxIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title='Change Colors' enterDelay={300}>
-              <IconButton
-                color='inherit'
-                aria-label='changeColors'
-                component={Link}
-                naked
-                href='/changecolor'
-                color={selectedIndex === 2 ? 'secondary' : 'inherit'}
-              >
-                <PaletteIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title='Dark/Light' enterDelay={300}>
-              <IconButton
-                color='inherit'
-                aria-label='darkLight'
-                onClick={(event) => handleDarkLight(event)}
-              >
-                {!prefersDarkMode && loaded ? (
-                  <Brightness4Icon />
-                ) : (
-                  <Brightness5Icon />
-                )}
-              </IconButton>
-            </Tooltip>
-          </Hidden>
-        </Toolbar>
-      </AppBar>
+      <Hidden lgUp>
+        <AppBar position='fixed' className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color='inherit'
+              aria-label='open drawer'
+              edge='start'
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Hidden xsDown>
+              <Typography variant='h6' noWrap>
+                {appBarTitle}
+              </Typography>
+            </Hidden>
+            <div className={classes.grow} />
+            <Hidden lgUp>
+              <Tooltip title='Blog' enterDelay={300}>
+                <IconButton
+                  color='inherit'
+                  aria-label='blog'
+                  component={Link}
+                  naked
+                  href='/'
+                  color={selectedIndex === 0 ? 'secondary' : 'inherit'}
+                >
+                  <HomeIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title='Add Post' enterDelay={300}>
+                <IconButton
+                  color='inherit'
+                  aria-label='addPost'
+                  component={Link}
+                  naked
+                  href='/addpost'
+                  color={selectedIndex === 1 ? 'secondary' : 'inherit'}
+                >
+                  <AddBoxIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title='Change Colors' enterDelay={300}>
+                <IconButton
+                  color='inherit'
+                  aria-label='changeColors'
+                  component={Link}
+                  naked
+                  href='/changecolor'
+                  color={selectedIndex === 2 ? 'secondary' : 'inherit'}
+                >
+                  <PaletteIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title='Dark/Light' enterDelay={300}>
+                <IconButton
+                  color='inherit'
+                  aria-label='darkLight'
+                  onClick={(event) => handleDarkLight(event)}
+                >
+                  {!prefersDarkMode && loaded ? (
+                    <Brightness4Icon />
+                  ) : (
+                    <Brightness5Icon />
+                  )}
+                </IconButton>
+              </Tooltip>
+            </Hidden>
+          </Toolbar>
+        </AppBar>
+      </Hidden>
       <nav className={classes.drawer} aria-label='mailbox folders'>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden mdUp implementation='css'>
@@ -313,7 +304,7 @@ function Layout(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Container maxWidth='lg'>{props.children}</Container>
+        <Container maxWidth='md'>{props.children}</Container>
       </main>
     </div>
   );

@@ -3,15 +3,20 @@ import ColorContext from '../context/color/colorContext';
 import PropTypes from 'prop-types';
 import { rgbToHex, withStyles, useTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
-import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input';
-import Radio from '@material-ui/core/Radio';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import { capitalize } from '@material-ui/core/utils';
-import { NoSsr, Box } from '@material-ui/core';
+import {
+  NoSsr,
+  Box,
+  Grid,
+  Input,
+  Radio,
+  Tooltip,
+  Typography,
+  Button,
+  useMediaQuery,
+  Paper,
+} from '@material-ui/core';
 
 const hues = Object.keys(colors).slice(1, 17);
 const shades = [
@@ -36,30 +41,52 @@ const styles = (theme) => ({
     padding: 0,
   },
   radioIcon: {
-    width: 48,
-    height: 48,
+    width: 60,
+    height: 60,
+    [theme.breakpoints.up('md')]: {
+      width: 96,
+      height: 96,
+    },
   },
   radioIconSelected: {
-    width: 48,
-    height: 48,
+    width: 60,
+    height: 60,
     border: '1px solid white',
     color: theme.palette.common.white,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      width: 96,
+      height: 96,
+    },
   },
   swatch: {
-    width: 192,
+    width: 240,
+    [theme.breakpoints.up('md')]: {
+      width: 336 * 1.142857143,
+    },
+  },
+  input: {
+    width: 240,
+    [theme.breakpoints.up('md')]: {
+      width: 336 * 1.142857143,
+    },
+    display: 'block',
   },
   colorBar: {
     marginTop: theme.spacing(2),
   },
   colorSquare: {
-    width: 64,
-    height: 64,
+    width: 80,
+    height: 80,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      width: 128,
+      height: 128,
+    },
   },
   button: {
     marginLeft: theme.spacing(1),
@@ -69,6 +96,7 @@ const styles = (theme) => ({
 function ColorChanger(props) {
   const { classes } = props;
   const theme = useTheme();
+  const matches = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const colorContext = useContext(ColorContext);
   const { setColors, clearColors, primaryMain, secondaryMain } = colorContext;
   const defaults = { primary: primaryMain, secondary: secondaryMain };
@@ -149,22 +177,26 @@ function ColorChanger(props) {
     const background = theme.palette.augmentColor({ main: color });
 
     return (
-      <Grid container className={classes.colorBar}>
-        {['dark', 'main', 'light'].map((key) => (
-          <div
-            className={classes.colorSquare}
-            style={{ backgroundColor: background[key] }}
-            key={key}
-          >
-            <Typography
-              variant='caption'
-              style={{ color: theme.palette.getContrastText(background[key]) }}
+      <Box pt={1}>
+        <Grid container className={classes.colorBar}>
+          {['dark', 'main', 'light'].map((key) => (
+            <div
+              className={classes.colorSquare}
+              style={{ backgroundColor: background[key] }}
+              key={key}
             >
-              {rgbToHex(background[key])}
-            </Typography>
-          </div>
-        ))}
-      </Grid>
+              <Typography
+                variant='caption'
+                style={{
+                  color: theme.palette.getContrastText(background[key]),
+                }}
+              >
+                {rgbToHex(background[key])}
+              </Typography>
+            </div>
+          ))}
+        </Grid>
+      </Box>
     );
   };
 
@@ -174,7 +206,7 @@ function ColorChanger(props) {
     const color = state[`${intent}`];
 
     return (
-      <Grid item xs={12} sm={6}>
+      <Grid item container justify='center' xs={12} sm={6}>
         <Box pb={3}>
           <Typography
             component='label'
@@ -188,8 +220,8 @@ function ColorChanger(props) {
             id={intent}
             value={intentInput}
             onChange={handleChangeColor(intent)}
-            fullWidth
             color={intent === 'primary' ? 'primary' : 'secondary'}
+            className={classes.input}
           />
         </Box>
         <div className={classes.swatch}>
@@ -239,21 +271,23 @@ function ColorChanger(props) {
       <Grid container spacing={5} className={classes.root}>
         {colorPicker('primary')}
         {colorPicker('secondary')}
-        <Grid item xs={12}>
+        <Grid item container justify='center' xs={12} sm={6}>
           <Button
             variant='contained'
             color='primary'
             onClick={handleChangeDocsColors}
+            size={matches ? 'large' : 'medium'}
           >
             Set Colors
           </Button>
           <Button
             variant='outlined'
-            color='primary'
+            color='secondary'
             onClick={handleResetDocsColors}
             className={classes.button}
+            size={matches ? 'large' : 'medium'}
           >
-            Reset Colors
+            Reset
           </Button>
         </Grid>
       </Grid>
