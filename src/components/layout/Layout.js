@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    borderRight: 'none',
   },
   content: {
     flexGrow: 1,
@@ -303,7 +304,7 @@ function Layout(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Container maxWidth='md'>{props.children}</Container>
+        <Container maxWidth='lg'>{props.children}</Container>
       </main>
     </div>
   );
