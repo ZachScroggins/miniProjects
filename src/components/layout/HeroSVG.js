@@ -24,8 +24,6 @@ export default function HeroSVG() {
     <div className={classes.svgContainer}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        // width='802.027'
-        // height='590.916'
         data-name='Layer 1'
         viewBox='0 0 802.027 590.916'
         className={classes.svg}
@@ -230,7 +228,7 @@ export default function HeroSVG() {
           ry='28.205'
         ></ellipse>
         <path
-          fill='#6c63ff'
+          fill={theme.palette.secondary.main}
           d='M906.373 733.048c-64.755-11.526-135.567-9.61-209.846 0 33.855-28.581 63.074-57.163 29.219-85.744 66.039 13.624 75.289 12.245 148.752 0-17.04 28.581 14.836 57.163 31.875 85.744z'
           transform='translate(-198.987 -154.542)'
         ></path>
@@ -240,7 +238,7 @@ export default function HeroSVG() {
           transform='translate(-198.987 -154.542)'
         ></path>
         <path
-          fill='#6c63ff'
+          fill={theme.palette.secondary.main}
           d='M890.578 720.854c-55.007-9.2-115.159-7.67-178.257 0 28.76-22.814 53.58-45.628 24.821-68.442 56.098 10.875 63.955 9.774 126.36 0-14.475 22.814 12.602 45.628 27.076 68.442z'
           transform='translate(-198.987 -154.542)'
         ></path>
@@ -314,7 +312,7 @@ export default function HeroSVG() {
         ></path>
         <circle cx='618.521' cy='472.603' r='56.41' fill='#2f2e41'></circle>
         <path
-          fill='#6c63ff'
+          fill={theme.palette.secondary.main}
           d='M328.309 307.736L398.258 305.301 405.027 279.531 332.822 281.71 328.309 307.736z'
         ></path>
         <path

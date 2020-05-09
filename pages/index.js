@@ -1,5 +1,5 @@
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Grid, Typography, Box, Button } from '@material-ui/core';
+import { Grid, Typography, Box, Button, Hidden } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import HeroBackground from '../src/components/layout/HeroBackground';
 import HeroSVG from '../src/components/layout/HeroSVG';
@@ -29,9 +29,9 @@ export default function Index() {
   const classes = useStyles();
 
   return (
-    <Grid container direction='row' justify='center' spacing={1}>
-      <Grid item xs={12} md={6}>
-        <Box pt={{ xs: 3, md: 10 }} justifyContent='center'>
+    <Grid container spacing={1}>
+      <Grid item container justify='center' xs={12} md={6}>
+        <Box pt={{ xs: 3, md: 10 }} pl={{ md: 9 }}>
           <Typography variant='h3' component='h2' className={classes.h2}>
             A collection of small
           </Typography>
@@ -44,20 +44,32 @@ export default function Index() {
             </Typography>
           </Box>
           <Box pt={4}>
-            <Button
-              variant='contained'
-              color='secondary'
-              size='large'
-              startIcon={<ArrowDownwardIcon />}
-            >
-              Check it out!
-            </Button>
+            <Hidden smUp>
+              <Button
+                variant='contained'
+                color='primary'
+                size='small'
+                startIcon={<ArrowDownwardIcon />}
+              >
+                Check it out!
+              </Button>
+            </Hidden>
+            <Hidden xsDown>
+              <Button
+                variant='contained'
+                color='primary'
+                size='large'
+                startIcon={<ArrowDownwardIcon />}
+              >
+                Check it out!
+              </Button>
+            </Hidden>
           </Box>
         </Box>
       </Grid>
       <HeroBackground />
-      <Grid item xs={12} md={6}>
-        <Box pt={{ xs: 6, md: 10 }}>
+      <Grid item container justify='center' xs={12} md={6}>
+        <Box pt={{ xs: 6, md: 10 }} pr={{ md: 9 }}>
           <HeroSVG />
         </Box>
       </Grid>
