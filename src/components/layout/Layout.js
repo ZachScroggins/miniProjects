@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 
 import Link from '../Link';
-import useLoaded from '../../utils/useLoaded';
 import getContrastTextColor from '../../utils/getContrastTextColor';
 import ColorContext from '../../context/color/colorContext';
 
@@ -82,7 +81,6 @@ function Layout(props) {
   const classes = useStyles();
   const theme = useTheme();
   const router = useRouter();
-  const loaded = useLoaded();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const colorContext = useContext(ColorContext);
@@ -139,9 +137,10 @@ function Layout(props) {
         >
           <Typography
             variant='h5'
-            // style={{
-            //   color: getContrastTextColor('primary.main'),
-            // }}
+            component='h1'
+            style={{
+              color: getContrastTextColor('primary.main'),
+            }}
           >
             miniProjects
           </Typography>
@@ -170,11 +169,7 @@ function Layout(props) {
         </ListItem>
         <ListItem button onClick={(event) => handleDarkLight(event)}>
           <ListItemIcon>
-            {!prefersDarkMode && loaded ? (
-              <Brightness4Icon />
-            ) : (
-              <Brightness5Icon />
-            )}
+            {type === 'light' ? <Brightness4Icon /> : <Brightness5Icon />}
           </ListItemIcon>
           <ListItemText primary='Dark/Light' />
         </ListItem>
@@ -267,11 +262,7 @@ function Layout(props) {
                   aria-label='darkLight'
                   onClick={(event) => handleDarkLight(event)}
                 >
-                  {!prefersDarkMode && loaded ? (
-                    <Brightness4Icon />
-                  ) : (
-                    <Brightness5Icon />
-                  )}
+                  {type === 'light' ? <Brightness4Icon /> : <Brightness5Icon />}
                 </IconButton>
               </Tooltip>
             </Hidden>

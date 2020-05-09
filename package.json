@@ -12,6 +12,7 @@
     "next": "^9.3.6",
     "prop-types": "latest",
     "react": "latest",
+    "react-cookie": "^4.0.3",
     "react-dom": "latest"
   },
   "scripts": {

@@ -1,8 +1,7 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer } from 'react';
+import { useCookies } from 'react-cookie';
 import ColorContext from './colorContext';
 import ColorReducer from './colorReducer';
-import checkClient from '../../utils/checkClient';
-import useClientMemo from '../../utils/useClientMemo';
 import {
   SET_PALETTE_COLOR,
   CLEAR_PALETTE_COLOR,
@@ -10,34 +9,22 @@ import {
 } from '../types';
 
 const ColorState = (props) => {
-  let typeLS = null;
-  let colorsLS = null;
-  let primaryLS = null;
-  let secondaryLS = null;
-
-  useClientMemo(() => {
-    typeLS = localStorage.getItem('palette_type');
-  }, [typeLS]);
-
-  useClientMemo(() => {
-    colorsLS = JSON.parse(localStorage.getItem('palette_colors'));
-    if (colorsLS !== null) {
-      primaryLS = colorsLS.primary;
-      secondaryLS = colorsLS.secondary;
-    }
-  }, []);
-
-  // useEffect(() => {
-
-  // })
-
+  const [cookies, setCookie, removeCookie] = useCookies();
   const initialState = {
-    primaryMain: primaryLS !== null ? primaryLS : '#3f51b5',
-    secondaryMain: secondaryLS !== null ? secondaryLS : '#f50057',
-    type: typeLS !== null ? typeLS : 'light',
+    primaryMain: paletteSaved() ? cookies.palette.primaryMain : '#3f51b5',
+    secondaryMain: paletteSaved() ? cookies.palette.secondaryMain : '#f50057',
+    type: typeSaved() ? cookies.type : 'light',
   };
-
   const [state, dispatch] = useReducer(ColorReducer, initialState);
+
+  function paletteSaved() {
+    const value = cookies.palette !== undefined ? true : false;
+    return value;
+  }
+  function typeSaved() {
+    const value = cookies.type !== undefined ? true : false;
+    return value;
+  }
 
   const setColors = (primary, secondary) => {
     const colors = {
@@ -47,9 +34,11 @@ const ColorState = (props) => {
 
     dispatch({ type: SET_PALETTE_COLOR, payload: colors });
 
-    checkClient(() => {
-      localStorage.setItem('palette_colors', JSON.stringify(colors));
-    });
+    setCookie(
+      'palette',
+      { primaryMain: primary, secondaryMain: secondary },
+      { path: '/', maxAge: 60 * 60 * 24 * 30 }
+    );
   };
 
   const clearColors = () => {
@@ -60,25 +49,19 @@ const ColorState = (props) => {
 
     dispatch({ type: CLEAR_PALETTE_COLOR, payload: colors });
 
-    checkClient(() => {
-      localStorage.removeItem('palette_colors');
-    });
+    removeCookie('palette');
   };
 
   const setType = (prefersDarkMode) => {
     if (prefersDarkMode === true) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'dark' });
 
-      checkClient(() => {
-        localStorage.setItem('palette_type', 'dark');
-      });
+      setCookie('type', 'dark', { path: '/', maxAge: 60 * 60 * 24 * 30 });
     }
     if (prefersDarkMode === false) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'light' });
 
-      checkClient(() => {
-        localStorage.setItem('palette_type', 'light');
-      });
+      setCookie('type', 'light', { path: '/', maxAge: 60 * 60 * 24 * 30 });
     }
   };
 

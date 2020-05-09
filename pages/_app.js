@@ -4,11 +4,13 @@ import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Layout from '../src/components/layout/Layout';
 import ColorState from '../src/context/color/ColorState';
-
 import ThemeProvider from '../src/components/ThemeProvider';
+import { CookiesProvider, Cookies } from 'react-cookie';
+
+const isBrowser = () => typeof window !== 'undefined';
 
 export default function MyApp(props) {
-  const { Component, pageProps } = props;
+  const { Component, pageProps, cookies } = props;
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -23,17 +25,39 @@ export default function MyApp(props) {
       <Head>
         <title>miniCMS</title>
       </Head>
-      <ColorState>
-        <ThemeProvider>
-          <Layout>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </ColorState>
+      <CookiesProvider cookies={isBrowser() ? undefined : cookies}>
+        <ColorState>
+          <ThemeProvider>
+            <Layout>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </ColorState>
+      </CookiesProvider>
     </React.Fragment>
   );
 }
+
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+  let pageProps = {};
+
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+
+  function getCookies(ctx) {
+    if (ctx && ctx.req && ctx.req.headers.cookie) {
+      return new Cookies(ctx.req.headers.cookie);
+    }
+
+    return new Cookies();
+  }
+
+  const cookies = getCookies(ctx);
+
+  return { pageProps, cookies };
+};
 
 MyApp.propTypes = {
   Component: PropTypes.func.isRequired,

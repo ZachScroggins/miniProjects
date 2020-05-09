@@ -6,7 +6,6 @@ import * as colors from '@material-ui/core/colors';
 import CheckIcon from '@material-ui/icons/Check';
 import { capitalize } from '@material-ui/core/utils';
 import {
-  NoSsr,
   Box,
   Grid,
   Input,
@@ -268,34 +267,32 @@ function ColorChanger(props) {
   };
 
   return (
-    <NoSsr>
-      <Grid container spacing={5} className={classes.root}>
-        {colorPicker('primary')}
-        {colorPicker('secondary')}
-        <Grid item container justify='center' xs={12} sm={6}>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={handleChangeDocsColors}
-            size={matches ? 'large' : 'medium'}
-          >
-            Set Colors
-          </Button>
-          <Button
-            variant='outlined'
-            color='secondary'
-            onClick={handleResetDocsColors}
-            className={classes.button}
-            size={matches ? 'large' : 'medium'}
-          >
-            Reset
-          </Button>
-          <Hidden smDown>
-            <div style={{ width: '115px' }}></div>
-          </Hidden>
-        </Grid>
+    <Grid container spacing={5} className={classes.root}>
+      {colorPicker('primary')}
+      {colorPicker('secondary')}
+      <Grid item container justify='center' xs={12} sm={6}>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={handleChangeDocsColors}
+          size={matches ? 'large' : 'medium'}
+        >
+          Set Colors
+        </Button>
+        <Button
+          variant='outlined'
+          color='secondary'
+          onClick={handleResetDocsColors}
+          className={classes.button}
+          size={matches ? 'large' : 'medium'}
+        >
+          Reset
+        </Button>
+        <Hidden smDown>
+          <div style={{ width: '115px' }}></div>
+        </Hidden>
       </Grid>
-    </NoSsr>
+    </Grid>
   );
 }
 
