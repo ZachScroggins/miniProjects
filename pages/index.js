@@ -1,5 +1,9 @@
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Grid, Typography, NoSsr } from '@material-ui/core';
+import { Grid, Typography, NoSsr, Box, Button } from '@material-ui/core';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import HeroBackground from '../src/components/layout/HeroBackground';
+import HeroSVG from '../src/components/layout/HeroSVG';
+import getContrastTextColor from '../src/utils/getContrastTextColor';
 
 const useStyles = makeStyles((theme) => ({
   heroBackground: {
@@ -24,49 +28,45 @@ export default function Index() {
 
   return (
     <Grid container spacing={1}>
-      <Grid item xs={12}>
-        <Typography variant='h5' component='h1'>
-          Your Next Blog
-        </Typography>
-      </Grid>
-      <NoSsr>
-        <div className={classes.heroBackground}>
-          <svg
-            className={classes.heroSvg}
-            xmlns='http://www.w3.org/2000/svg'
-            viewBox='0 0 1367 768'
+      <Grid item xs={12} md={6}>
+        <Box pt={{ xs: 3, md: 10 }}>
+          <Typography
+            variant='h3'
+            component='h1'
+            // style={{
+            //   color: getContrastTextColor('secondary.main'),
+            // }}
           >
-            <defs>
-              <linearGradient
-                id='linear-gradient'
-                x2='1367'
-                y1='269.69'
-                y2='269.69'
-                gradientUnits='userSpaceOnUse'
-              >
-                {/* <stop offset='0' stopColor='#00f'></stop> */}
-                <stop
-                  offset='0'
-                  stopColor={theme.palette.secondary.main}
-                ></stop>
-                <stop offset='1' stopColor={theme.palette.primary.main}></stop>
-              </linearGradient>
-            </defs>
-            <g data-name='Layer 2'>
-              <g data-name='Layer 1'>
-                <path
-                  fill={theme.palette.background.default}
-                  d='M0 188H1367V768H0z'
-                ></path>
-                <path
-                  fill='url(#linear-gradient)'
-                  d='M0 517c99.76 87.4 310.23-112.9 527-61 213 51 307.92-158.18 503-100 171 51 337-94 337-94V0H0z'
-                ></path>
-              </g>
-            </g>
-          </svg>
-        </div>
-      </NoSsr>
+            A collection of small JavaScript projects
+          </Typography>
+          <Box pt={2}>
+            <Typography
+              variant='h5'
+              // style={{
+              //   color: getContrastTextColor('secondary.main'),
+              // }}
+            >
+              Recreated with React
+            </Typography>
+          </Box>
+          <Box pt={4}>
+            <Button
+              variant='contained'
+              color='secondary'
+              size='large'
+              startIcon={<ArrowDownwardIcon />}
+            >
+              Check it out!
+            </Button>
+          </Box>
+        </Box>
+      </Grid>
+      <HeroBackground />
+      <Grid item xs={12} md={6}>
+        <Box pt={{ xs: 6, md: 10 }}>
+          <HeroSVG />
+        </Box>
+      </Grid>
     </Grid>
   );
 }

@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 import ColorContext from './colorContext';
 import ColorReducer from './colorReducer';
 import checkClient from '../../utils/checkClient';
@@ -26,6 +26,10 @@ const ColorState = (props) => {
       secondaryLS = colorsLS.secondary;
     }
   }, []);
+
+  // useEffect(() => {
+
+  // })
 
   const initialState = {
     primaryMain: primaryLS !== null ? primaryLS : '#3f51b5',

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import Link from '../Link';
 import useLoaded from '../../utils/useLoaded';
+import getContrastTextColor from '../../utils/getContrastTextColor';
 import ColorContext from '../../context/color/colorContext';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -130,13 +131,20 @@ function Layout(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar}>
-        <Box p={1} pt={2} pl={2} display='flex' bgcolor='primary.main'>
-          <Box pr={3} color='primary.contrastText'>
-            <EmojiPeopleIcon />
-          </Box>
-          <Box color='primary.contrastText'>
-            <Typography variant='h5'>YourBlog</Typography>
-          </Box>
+        <Box
+          p={1}
+          display='flex'
+          justifyContent='center'
+          bgcolor='primary.main'
+        >
+          <Typography
+            variant='h5'
+            // style={{
+            //   color: getContrastTextColor('primary.main'),
+            // }}
+          >
+            miniProjects
+          </Typography>
         </Box>
       </div>
       <List component='nav'>
@@ -189,7 +197,7 @@ function Layout(props) {
           <ListItemIcon>
             <ArrowBackIcon />
           </ListItemIcon>
-          <ListItemText primary='Portfolio' />
+          <ListItemText primary='My Work' />
         </ListItem>
       </List>
     </div>

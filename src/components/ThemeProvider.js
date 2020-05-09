@@ -3,6 +3,7 @@ import ColorContext from '../context/color/colorContext';
 import {
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,
+  responsiveFontSizes,
 } from '@material-ui/core/styles';
 
 const ThemeProvider = (props) => {
@@ -11,7 +12,7 @@ const ThemeProvider = (props) => {
   const { primaryMain, secondaryMain, type } = colorContext;
 
   // Create a theme instance.
-  const theme = useMemo(
+  let theme = useMemo(
     () =>
       createMuiTheme({
         palette: {
@@ -26,6 +27,8 @@ const ThemeProvider = (props) => {
       }),
     [primaryMain, secondaryMain, type]
   );
+
+  theme = responsiveFontSizes(theme);
 
   return <MuiThemeProvider theme={theme}>{props.children}</MuiThemeProvider>;
 };
