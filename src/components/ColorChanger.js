@@ -16,6 +16,7 @@ import {
   useMediaQuery,
   Paper,
   Hidden,
+  NoSsr,
 } from '@material-ui/core';
 
 const hues = Object.keys(colors).slice(1, 17);
@@ -267,6 +268,7 @@ function ColorChanger(props) {
   };
 
   return (
+    // <NoSsr>
     <Grid container spacing={5} className={classes.root}>
       {colorPicker('primary')}
       {colorPicker('secondary')}
@@ -293,6 +295,7 @@ function ColorChanger(props) {
         </Hidden>
       </Grid>
     </Grid>
+    // </NoSsr>
   );
 }
 

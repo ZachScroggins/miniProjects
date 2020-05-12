@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 import ColorContext from '../context/color/colorContext';
 import {
   createMuiTheme,
@@ -12,21 +12,17 @@ const ThemeProvider = (props) => {
   const { primaryMain, secondaryMain, type } = colorContext;
 
   // Create a theme instance.
-  let theme = useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          primary: {
-            main: primaryMain,
-          },
-          secondary: {
-            main: secondaryMain,
-          },
-          type,
-        },
-      }),
-    [primaryMain, secondaryMain, type]
-  );
+  let theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: primaryMain,
+      },
+      secondary: {
+        main: secondaryMain,
+      },
+      type,
+    },
+  });
 
   theme = responsiveFontSizes(theme);
 

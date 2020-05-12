@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { useCookies } from 'react-cookie';
+import { useCookies, Cookies } from 'react-cookie';
 import ColorContext from './colorContext';
 import ColorReducer from './colorReducer';
 import {
@@ -10,6 +10,7 @@ import {
 
 const ColorState = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies();
+
   const initialState = {
     primaryMain: paletteSaved() ? cookies.palette.primaryMain : '#3f51b5',
     secondaryMain: paletteSaved() ? cookies.palette.secondaryMain : '#f50057',
@@ -25,6 +26,12 @@ const ColorState = (props) => {
     const value = cookies.type !== undefined ? true : false;
     return value;
   }
+
+  const getCookies = () => {
+    const cook = new Cookies();
+    const cooks = cook.getAll();
+    return cooks;
+  };
 
   const setColors = (primary, secondary) => {
     const colors = {
@@ -71,6 +78,7 @@ const ColorState = (props) => {
         primaryMain: state.primaryMain,
         secondaryMain: state.secondaryMain,
         type: state.type,
+        getCookies,
         setColors,
         clearColors,
         setType,

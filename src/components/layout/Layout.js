@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 
 import Link from '../Link';
-import getContrastTextColor from '../../utils/getContrastTextColor';
 import ColorContext from '../../context/color/colorContext';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -15,7 +14,6 @@ import Brightness5Icon from '@material-ui/icons/Brightness5';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import CodeIcon from '@material-ui/icons/Code';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import {
   AppBar,
   CssBaseline,
@@ -134,14 +132,9 @@ function Layout(props) {
           display='flex'
           justifyContent='center'
           bgcolor='primary.main'
+          color='primary.contrastText'
         >
-          <Typography
-            variant='h5'
-            component='h1'
-            style={{
-              color: getContrastTextColor('primary.main'),
-            }}
-          >
+          <Typography variant='h5' component='h1' color='inherit'>
             miniProjects
           </Typography>
         </Box>
