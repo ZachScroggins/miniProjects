@@ -11,19 +11,15 @@ import {
 const ColorState = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  function paletteSaved() {
+  function ifCookies() {
     const paletteBool = cookies.palette !== undefined ? true : false;
     return paletteBool;
   }
-  function typeSaved() {
-    const typeBool = cookies.type !== undefined ? true : false;
-    return typeBool;
-  }
 
   const [state, dispatch] = useReducer(ColorReducer, {
-    primaryMain: paletteSaved() ? cookies.palette.primaryMain : '#3f51b5',
-    secondaryMain: paletteSaved() ? cookies.palette.secondaryMain : '#f50057',
-    type: typeSaved() ? cookies.type : 'light',
+    primaryMain: ifCookies() ? cookies.palette.primaryMain : '#3f51b5',
+    secondaryMain: ifCookies() ? cookies.palette.secondaryMain : '#f50057',
+    type: ifCookies() ? cookies.palette.type : 'light',
   });
 
   const setColors = (primary, secondary) => {
@@ -36,9 +32,14 @@ const ColorState = (props) => {
 
     setCookie(
       'palette',
-      { primaryMain: primary, secondaryMain: secondary },
+      { primaryMain: primary, secondaryMain: secondary, type: state.type },
       { path: '/', maxAge: 60 * 60 * 24 * 30 }
     );
+    // setCookie(
+    //   'palette',
+    //   { primaryMain: primary, secondaryMain: secondary },
+    //   { path: '/', maxAge: 60 * 60 * 24 * 30 }
+    // );
   };
 
   const clearColors = () => {
@@ -49,19 +50,43 @@ const ColorState = (props) => {
 
     dispatch({ type: CLEAR_PALETTE_COLOR, payload: colors });
 
-    removeCookie('palette');
+    // removeCookie('palette');
+    setCookie(
+      'palette',
+      { primaryMain: '#3f51b5', secondaryMain: '#f50057', type: state.type },
+      { path: '/', maxAge: 60 * 60 * 24 * 30 }
+    );
   };
 
+  // try using string called type as parameter and pass function 'light' or 'dark'
   const setType = (prefersDarkMode) => {
     if (prefersDarkMode === true) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'dark' });
 
-      setCookie('type', 'dark', { path: '/', maxAge: 60 * 60 * 24 * 30 });
+      // setCookie('type', 'dark', { path: '/', maxAge: 60 * 60 * 24 * 30 });
+      setCookie(
+        'palette',
+        {
+          primaryMain: state.primaryMain,
+          secondaryMain: state.secondaryMain,
+          type: 'dark',
+        },
+        { path: '/', maxAge: 60 * 60 * 24 * 30 }
+      );
     }
     if (prefersDarkMode === false) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'light' });
 
-      setCookie('type', 'light', { path: '/', maxAge: 60 * 60 * 24 * 30 });
+      // setCookie('type', 'light', { path: '/', maxAge: 60 * 60 * 24 * 30 });
+      setCookie(
+        'palette',
+        {
+          primaryMain: state.primaryMain,
+          secondaryMain: state.secondaryMain,
+          type: 'light',
+        },
+        { path: '/', maxAge: 60 * 60 * 24 * 30 }
+      );
     }
   };
 

@@ -36,7 +36,6 @@ export default function Index() {
             >
               A collection of small
             </Typography>
-
             <Typography
               variant='h3'
               component='h2'
