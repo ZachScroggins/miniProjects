@@ -15,8 +15,12 @@ export const styles = (theme) => {
     },
     heroSvg: {
       width: 'auto',
-      height: '40em',
+      height: '65em',
     },
+    // heroSvg: {
+    //   width: 'auto',
+    //   height: '40em',
+    // },
     secondary: {
       stopColor: theme.palette.secondary.main,
     },
@@ -31,9 +35,9 @@ const HeroBackground = React.forwardRef(function HeroBackground(props, ref) {
 
   return (
     <Box className={classes.heroBackground} ref={ref}>
-      <SvgIcon
-        classes={{ root: classes.heroSvg }}
-        // className={ classes.heroSvg }
+      <svg
+        // classes={{ root: classes.heroSvg }}
+        className={classes.heroSvg}
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 1367 768'
       >
@@ -53,7 +57,7 @@ const HeroBackground = React.forwardRef(function HeroBackground(props, ref) {
           fill='url(#linear-gradient)'
           d='M0 517c99.76 87.4 310.23-112.9 527-61 213 51 307.92-158.18 503-100 171 51 337-94 337-94V0H0z'
         ></path>
-      </SvgIcon>
+      </svg>
     </Box>
   );
 });
