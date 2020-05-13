@@ -21,5 +21,9 @@
     "export": "next build && next export",
     "deploy": "next build && next export && firebase deploy",
     "start": "next start"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-plugin-react": "^7.20.0"
   }
 }

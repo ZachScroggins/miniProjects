@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
-import { SvgIcon, Box } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
 export const styles = (theme) => {
   return {
@@ -31,7 +31,7 @@ export const styles = (theme) => {
 };
 
 const HeroBackground = React.forwardRef(function HeroBackground(props, ref) {
-  const { classes, className, ...other } = props;
+  const { classes } = props;
 
   return (
     <Box className={classes.heroBackground} ref={ref}>

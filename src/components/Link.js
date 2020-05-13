@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -95,6 +94,7 @@ Link.propTypes = {
   role: PropTypes.string,
 };
 
+// eslint-disable-next-line react/display-name
 export default React.forwardRef((props, ref) => (
   <Link {...props} innerRef={ref} />
 ));
