@@ -11,27 +11,20 @@ import {
 const ColorState = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  const initialState = {
+  function paletteSaved() {
+    const paletteBool = cookies.palette !== undefined ? true : false;
+    return paletteBool;
+  }
+  function typeSaved() {
+    const typeBool = cookies.type !== undefined ? true : false;
+    return typeBool;
+  }
+
+  const [state, dispatch] = useReducer(ColorReducer, {
     primaryMain: paletteSaved() ? cookies.palette.primaryMain : '#3f51b5',
     secondaryMain: paletteSaved() ? cookies.palette.secondaryMain : '#f50057',
     type: typeSaved() ? cookies.type : 'light',
-  };
-  const [state, dispatch] = useReducer(ColorReducer, initialState);
-
-  function paletteSaved() {
-    const value = cookies.palette !== undefined ? true : false;
-    return value;
-  }
-  function typeSaved() {
-    const value = cookies.type !== undefined ? true : false;
-    return value;
-  }
-
-  const getCookies = () => {
-    const cook = new Cookies();
-    const cooks = cook.getAll();
-    return cooks;
-  };
+  });
 
   const setColors = (primary, secondary) => {
     const colors = {
@@ -78,7 +71,6 @@ const ColorState = (props) => {
         primaryMain: state.primaryMain,
         secondaryMain: state.secondaryMain,
         type: state.type,
-        getCookies,
         setColors,
         clearColors,
         setType,

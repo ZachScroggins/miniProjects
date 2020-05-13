@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import { SvgIcon, Box } from '@material-ui/core';
@@ -56,5 +57,10 @@ const HeroBackground = React.forwardRef(function HeroBackground(props, ref) {
     </Box>
   );
 });
+
+HeroBackground.propTypes = {
+  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
+};
 
 export default withStyles(styles)(HeroBackground);

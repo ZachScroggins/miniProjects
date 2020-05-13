@@ -118,8 +118,7 @@ function Layout(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleDarkLight = (event) => {
-    event.preventDefault();
+  const handleDarkLight = () => {
     prefersDarkMode = !prefersDarkMode;
     setType(prefersDarkMode);
   };
@@ -160,7 +159,7 @@ function Layout(props) {
           </ListItemIcon>
           <ListItemText primary='Change Color' />
         </ListItem>
-        <ListItem button onClick={(event) => handleDarkLight(event)}>
+        <ListItem button onClick={handleDarkLight}>
           <ListItemIcon>
             {type === 'light' ? <Brightness4Icon /> : <Brightness5Icon />}
           </ListItemIcon>
@@ -253,7 +252,7 @@ function Layout(props) {
                 <IconButton
                   color='inherit'
                   aria-label='darkLight'
-                  onClick={(event) => handleDarkLight(event)}
+                  onClick={handleDarkLight}
                 >
                   {type === 'light' ? <Brightness4Icon /> : <Brightness5Icon />}
                 </IconButton>

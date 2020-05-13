@@ -12,14 +12,6 @@ const isBrowser = () => typeof window !== 'undefined';
 export default function MyApp(props) {
   const { Component, pageProps, cookies } = props;
 
-  // React.useMemo(() => {
-  //   cookies.set(
-  //     'palette',
-  //     { primaryMain: '#009688', secondaryMain: '#00e5ff' },
-  //     { path: '/', maxAge: 60 * 60 * 24 * 30 }
-  //   );
-  // });
-
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -70,4 +62,5 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 MyApp.propTypes = {
   Component: PropTypes.func.isRequired,
   pageProps: PropTypes.object.isRequired,
+  cookies: PropTypes.object.isRequired,
 };

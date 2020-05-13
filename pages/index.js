@@ -1,4 +1,4 @@
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Box, Button, Hidden } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import HeroBackground from '../src/components/layout/HeroBackground';
