@@ -3,10 +3,10 @@ import ColorContext from '../context/color/colorContext';
 import {
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,
-  responsiveFontSizes,
+  responsiveFontSizes
 } from '@material-ui/core/styles';
 
-const ThemeProvider = (props) => {
+const ThemeProvider = props => {
   const colorContext = useContext(ColorContext);
 
   const { primaryMain, secondaryMain, type } = colorContext;
@@ -15,13 +15,13 @@ const ThemeProvider = (props) => {
   let theme = createMuiTheme({
     palette: {
       primary: {
-        main: primaryMain,
+        main: primaryMain
       },
       secondary: {
-        main: secondaryMain,
+        main: secondaryMain
       },
-      type,
-    },
+      type
+    }
   });
 
   theme = responsiveFontSizes(theme);

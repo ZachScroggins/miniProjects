@@ -29,49 +29,49 @@ import {
   Tooltip,
   Typography,
   Box,
-  Container,
+  Container
 } from '@material-ui/core';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   drawer: {
     [theme.breakpoints.up('lg')]: {
       width: drawerWidth,
-      flexShrink: 0,
-    },
+      flexShrink: 0
+    }
   },
   appBar: {
     [theme.breakpoints.up('lg')]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
+      marginLeft: drawerWidth
+    }
   },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('lg')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    borderRight: 'none',
+    borderRight: 'none'
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
     [theme.breakpoints.up('lg')]: {
-      padding: theme.spacing(0),
-    },
+      padding: theme.spacing(0)
+    }
   },
   grow: {
-    flex: '1 1 auto',
-  },
+    flex: '1 1 auto'
+  }
 }));
 
 function Layout(props) {
@@ -127,13 +127,13 @@ function Layout(props) {
     <div>
       <div className={classes.toolbar}>
         <Box
-          p={1}
+          p={1.7}
           display='flex'
           justifyContent='center'
           bgcolor='primary.main'
           color='primary.contrastText'
         >
-          <Typography variant='h5' component='h1' color='inherit'>
+          <Typography variant='h4' component='h1' color='inherit'>
             miniProjects
           </Typography>
         </Box>
@@ -143,13 +143,17 @@ function Layout(props) {
           <ListItemIcon>
             <HomeIcon color={selectedIndex === 0 ? 'secondary' : 'inherit'} />
           </ListItemIcon>
-          <ListItemText primary='Blog' />
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>Blog</Typography>
+          </ListItemText>
         </ListItem>
         <ListItem button component={Link} naked href='/addpost'>
           <ListItemIcon>
             <AddBoxIcon color={selectedIndex === 1 ? 'secondary' : 'inherit'} />
           </ListItemIcon>
-          <ListItemText primary='Add Post' />
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>Add Post</Typography>
+          </ListItemText>
         </ListItem>
         <ListItem button component={Link} naked href='/changecolor'>
           <ListItemIcon>
@@ -157,13 +161,17 @@ function Layout(props) {
               color={selectedIndex === 2 ? 'secondary' : 'inherit'}
             />
           </ListItemIcon>
-          <ListItemText primary='Change Color' />
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>Change Color</Typography>
+          </ListItemText>
         </ListItem>
         <ListItem button onClick={handleDarkLight}>
           <ListItemIcon>
             {type === 'light' ? <Brightness4Icon /> : <Brightness5Icon />}
           </ListItemIcon>
-          <ListItemText primary='Dark/Light' />
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>Dark/Light</Typography>
+          </ListItemText>
         </ListItem>
       </List>
       <Divider />
@@ -172,19 +180,25 @@ function Layout(props) {
           <ListItemIcon>
             <GitHubIcon />
           </ListItemIcon>
-          <ListItemText primary='GitHub' />
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>Github</Typography>
+          </ListItemText>
         </ListItem>
         <ListItem button component='a' href='https://www.codesandbox.io'>
           <ListItemIcon>
             <CodeIcon />
           </ListItemIcon>
-          <ListItemText primary='CodeSandbox' />
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>CodeSandbox</Typography>
+          </ListItemText>
         </ListItem>
         <ListItem button component='a' href='https://www.zachscroggins.com'>
           <ListItemIcon>
             <ArrowBackIcon />
           </ListItemIcon>
-          <ListItemText primary='My Work' />
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>My Work</Typography>
+          </ListItemText>
         </ListItem>
       </List>
     </div>
@@ -262,8 +276,7 @@ function Layout(props) {
         </AppBar>
       </Hidden>
       <nav className={classes.drawer} aria-label='mailbox folders'>
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden mdUp implementation='css'>
+        <Hidden mdUp>
           <Drawer
             container={container}
             variant='temporary'
@@ -271,20 +284,20 @@ function Layout(props) {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
-              paper: classes.drawerPaper,
+              paper: classes.drawerPaper
             }}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true // Better open performance on mobile.
             }}
             onClick={handleDrawerToggle}
           >
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden mdDown implementation='css'>
+        <Hidden mdDown>
           <Drawer
             classes={{
-              paper: classes.drawerPaper,
+              paper: classes.drawerPaper
             }}
             variant='permanent'
             open
@@ -295,7 +308,7 @@ function Layout(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Container maxWidth='lg'>{props.children}</Container>
+        <Container maxWidth='md'>{props.children}</Container>
       </main>
     </div>
   );

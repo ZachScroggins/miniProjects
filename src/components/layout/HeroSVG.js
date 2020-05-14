@@ -1,19 +1,22 @@
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   svgContainer: {
-    // width: '100%',
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   svg: {
     width: 500,
     [theme.breakpoints.down('sm')]: {
       width: 400,
+      transform: 'scaleX(-1)'
     },
     [theme.breakpoints.down('xs')]: {
-      width: 200,
+      width: 270
     },
-  },
+    '@media (max-width: 350px)': {
+      width: 230
+    }
+  }
 }));
 
 export default function HeroSVG() {

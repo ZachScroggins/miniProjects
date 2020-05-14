@@ -3,30 +3,29 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 
-export const styles = (theme) => {
+export const styles = theme => {
   return {
-    heroBackground: {
+    heroContainer: {
       width: '100%',
       position: 'absolute',
       top: 0,
       left: 0,
       zIndex: -1,
-      overflow: 'hidden',
+      overflow: 'hidden'
     },
-    heroSvg: {
+    heroBackground: {
       width: 'auto',
       height: '65em',
+      [theme.breakpoints.up('sm')]: {
+        height: '82em'
+      }
     },
-    // heroSvg: {
-    //   width: 'auto',
-    //   height: '40em',
-    // },
     secondary: {
-      stopColor: theme.palette.secondary.main,
+      stopColor: theme.palette.secondary.main
     },
     primary: {
-      stopColor: theme.palette.primary.main,
-    },
+      stopColor: theme.palette.primary.main
+    }
   };
 };
 
@@ -34,10 +33,10 @@ const HeroBackground = React.forwardRef(function HeroBackground(props, ref) {
   const { classes } = props;
 
   return (
-    <Box className={classes.heroBackground} ref={ref}>
+    <Box className={classes.heroContainer} ref={ref}>
       <svg
-        // classes={{ root: classes.heroSvg }}
-        className={classes.heroSvg}
+        // classes={{ root: classes.heroBackground }}
+        className={classes.heroBackground}
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 1367 768'
       >
@@ -64,7 +63,7 @@ const HeroBackground = React.forwardRef(function HeroBackground(props, ref) {
 
 HeroBackground.propTypes = {
   classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default withStyles(styles)(HeroBackground);
