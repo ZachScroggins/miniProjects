@@ -1,1 +1,1 @@
-# miniCMS
+# miniProjects
