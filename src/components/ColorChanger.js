@@ -14,9 +14,8 @@ import {
   Typography,
   Button,
   useMediaQuery,
-  Paper,
   Hidden,
-  NoSsr,
+  NoSsr
 } from '@material-ui/core';
 
 const hues = Object.keys(colors).slice(1, 17);
@@ -34,20 +33,20 @@ const shades = [
   'A700',
   'A400',
   'A200',
-  'A100',
+  'A100'
 ];
 
-const styles = (theme) => ({
+const styles = theme => ({
   radio: {
-    padding: 0,
+    padding: 0
   },
   radioIcon: {
     width: 60,
     height: 60,
     [theme.breakpoints.up('md')]: {
       width: 96,
-      height: 96,
-    },
+      height: 96
+    }
   },
   radioIconSelected: {
     width: 60,
@@ -59,24 +58,24 @@ const styles = (theme) => ({
     alignItems: 'center',
     [theme.breakpoints.up('md')]: {
       width: 96,
-      height: 96,
-    },
+      height: 96
+    }
   },
   swatch: {
     width: 240,
     [theme.breakpoints.up('md')]: {
-      width: 336 * 1.142857143,
-    },
+      width: 336 * 1.142857143
+    }
   },
   input: {
     width: 240,
     [theme.breakpoints.up('md')]: {
-      width: 336 * 1.142857143,
+      width: 336 * 1.142857143
     },
-    display: 'block',
+    display: 'block'
   },
   colorBar: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(2)
   },
   colorSquare: {
     width: 80,
@@ -86,18 +85,18 @@ const styles = (theme) => ({
     alignItems: 'center',
     [theme.breakpoints.up('md')]: {
       width: 128,
-      height: 128,
-    },
+      height: 128
+    }
   },
   button: {
-    marginLeft: theme.spacing(1),
-  },
+    marginLeft: theme.spacing(1)
+  }
 });
 
 function ColorChanger(props) {
   const { classes } = props;
   const theme = useTheme();
-  const matches = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const matches = useMediaQuery(theme => theme.breakpoints.up('md'));
   const colorContext = useContext(ColorContext);
   const { setColors, clearColors, primaryMain, secondaryMain } = colorContext;
   const defaults = { primary: primaryMain, secondary: secondaryMain };
@@ -109,23 +108,22 @@ function ColorChanger(props) {
     primaryHue: 'blue',
     secondaryHue: 'pink',
     primaryShade: 4,
-    secondaryShade: 11,
+    secondaryShade: 11
   });
 
-  const handleChangeColor = (name) => (event) => {
-    const isRgb = (string) =>
+  const handleChangeColor = name => event => {
+    const isRgb = string =>
       /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
 
-    const isHex = (string) =>
-      /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
+    const isHex = string => /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
 
     let {
-      target: { value: color },
+      target: { value: color }
     } = event;
 
-    setState((prevState) => ({
+    setState(prevState => ({
       ...prevState,
-      [`${name}Input`]: color,
+      [`${name}Input`]: color
     }));
 
     let isValidColor = false;
@@ -140,16 +138,16 @@ function ColorChanger(props) {
     }
 
     if (isValidColor) {
-      setState((prevState) => ({
+      setState(prevState => ({
         ...prevState,
-        [name]: color,
+        [name]: color
       }));
     }
   };
 
-  const handleChangeHue = (name) => (event) => {
+  const handleChangeHue = name => event => {
     const {
-      target: { value: hue },
+      target: { value: hue }
     } = event;
     const color = colors[hue][shades[state[`${name}Shade`]]];
 
@@ -157,14 +155,14 @@ function ColorChanger(props) {
       ...state,
       [`${name}Hue`]: hue,
       [name]: color,
-      [`${name}Input`]: color,
+      [`${name}Input`]: color
     });
   };
 
   const handleChangeDocsColors = () => {
     const paletteColors = {
       primary: { main: state.primary },
-      secondary: { main: state.secondary },
+      secondary: { main: state.secondary }
     };
 
     setColors(paletteColors.primary.main, paletteColors.secondary.main);
@@ -174,13 +172,13 @@ function ColorChanger(props) {
     clearColors();
   };
 
-  const colorBar = (color) => {
+  const colorBar = color => {
     const background = theme.palette.augmentColor({ main: color });
 
     return (
       <Box pt={1}>
         <Grid container className={classes.colorBar}>
-          {['dark', 'main', 'light'].map((key) => (
+          {['dark', 'main', 'light'].map(key => (
             <div
               className={classes.colorSquare}
               style={{ backgroundColor: background[key] }}
@@ -189,7 +187,7 @@ function ColorChanger(props) {
               <Typography
                 variant='caption'
                 style={{
-                  color: theme.palette.getContrastText(background[key]),
+                  color: theme.palette.getContrastText(background[key])
                 }}
               >
                 {rgbToHex(background[key])}
@@ -201,9 +199,8 @@ function ColorChanger(props) {
     );
   };
 
-  const colorPicker = (intent) => {
+  const colorPicker = intent => {
     const intentInput = state[`${intent}Input`];
-    const intentShade = state[`${intent}Shade`];
     const color = state[`${intent}`];
 
     return (
@@ -226,7 +223,7 @@ function ColorChanger(props) {
           />
         </Box>
         <div className={classes.swatch}>
-          {hues.map((hue) => {
+          {hues.map(hue => {
             const shade =
               intent === 'primary'
                 ? shades[state.primaryShade]
@@ -268,39 +265,39 @@ function ColorChanger(props) {
   };
 
   return (
-    // <NoSsr>
-    <Grid container spacing={5} className={classes.root}>
-      {colorPicker('primary')}
-      {colorPicker('secondary')}
-      <Grid item container justify='center' xs={12} sm={6}>
-        <Button
-          variant='contained'
-          color='primary'
-          onClick={handleChangeDocsColors}
-          size={matches ? 'large' : 'medium'}
-        >
-          Set Colors
-        </Button>
-        <Button
-          variant='outlined'
-          color='secondary'
-          onClick={handleResetDocsColors}
-          className={classes.button}
-          size={matches ? 'large' : 'medium'}
-        >
-          Reset
-        </Button>
-        <Hidden smDown>
-          <div style={{ width: '115px' }}></div>
-        </Hidden>
+    <NoSsr>
+      <Grid container spacing={5} className={classes.root}>
+        {colorPicker('primary')}
+        {colorPicker('secondary')}
+        <Grid item container justify='center' xs={12} sm={6}>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={handleChangeDocsColors}
+            size={matches ? 'large' : 'medium'}
+          >
+            Set Colors
+          </Button>
+          <Button
+            variant='outlined'
+            color='secondary'
+            onClick={handleResetDocsColors}
+            className={classes.button}
+            size={matches ? 'large' : 'medium'}
+          >
+            Reset
+          </Button>
+          <Hidden smDown>
+            <div style={{ width: '150px' }}></div>
+          </Hidden>
+        </Grid>
       </Grid>
-    </Grid>
-    // </NoSsr>
+    </NoSsr>
   );
 }
 
 ColorChanger.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ColorChanger);
