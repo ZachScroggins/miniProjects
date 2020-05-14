@@ -1,30 +1,40 @@
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { withStyles } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-  svgContainer: {
-    overflow: 'hidden'
-  },
-  svg: {
-    width: 500,
-    [theme.breakpoints.down('sm')]: {
-      width: 400,
-      transform: 'scaleX(-1)'
+export const styles = theme => {
+  return {
+    svgContainer: {
+      overflow: 'hidden'
     },
-    [theme.breakpoints.down('xs')]: {
-      width: 270
+    svg: {
+      width: 500,
+      [theme.breakpoints.down('sm')]: {
+        width: 400,
+        transform: 'scaleX(-1)'
+      },
+      [theme.breakpoints.down('xs')]: {
+        width: 270
+      },
+      '@media (max-width: 350px)': {
+        width: 230
+      }
     },
-    '@media (max-width: 350px)': {
-      width: 230
+    secondaryMain: {
+      fill: theme.palette.secondary.main
+    },
+    secondaryDark: {
+      fill: theme.palette.secondary.dark
     }
-  }
-}));
+  };
+};
 
-export default function HeroSVG() {
-  const theme = useTheme();
-  const classes = useStyles();
+const HeroSVG = React.forwardRef(function HeroSVG(props, ref) {
+  const { classes } = props;
 
   return (
-    <div className={classes.svgContainer}>
+    <Box className={classes.svgContainer} ref={ref}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         data-name='Layer 1'
@@ -40,7 +50,7 @@ export default function HeroSVG() {
           d='M492.774 136.101H578.178V221.505H492.774z'
         ></path>
         <path
-          fill='#ccc'
+          className={clsx(classes.secondaryDark)}
           d='M509.855 153.182H561.097V204.42399999999998H509.855z'
         ></path>
         <path
@@ -96,7 +106,7 @@ export default function HeroSVG() {
           transform='rotate(-180 830.95 120.326)'
         ></path>
         <path
-          fill='#ccc'
+          className={clsx(classes.secondaryDark)}
           d='M904.821 171.976H956.063V223.218H904.821z'
           transform='rotate(-180 830.95 120.326)'
         ></path>
@@ -165,7 +175,7 @@ export default function HeroSVG() {
           transform='rotate(-180 830.95 391.821)'
         ></path>
         <path
-          fill='#ccc'
+          className={clsx(classes.secondaryDark)}
           d='M904.821 443.471H956.063V494.713H904.821z'
           transform='rotate(-180 830.95 391.821)'
         ></path>
@@ -231,7 +241,7 @@ export default function HeroSVG() {
           ry='28.205'
         ></ellipse>
         <path
-          fill={theme.palette.secondary.main}
+          className={clsx(classes.secondaryMain)}
           d='M906.373 733.048c-64.755-11.526-135.567-9.61-209.846 0 33.855-28.581 63.074-57.163 29.219-85.744 66.039 13.624 75.289 12.245 148.752 0-17.04 28.581 14.836 57.163 31.875 85.744z'
           transform='translate(-198.987 -154.542)'
         ></path>
@@ -241,7 +251,7 @@ export default function HeroSVG() {
           transform='translate(-198.987 -154.542)'
         ></path>
         <path
-          fill={theme.palette.secondary.main}
+          className={clsx(classes.secondaryMain)}
           d='M890.578 720.854c-55.007-9.2-115.159-7.67-178.257 0 28.76-22.814 53.58-45.628 24.821-68.442 56.098 10.875 63.955 9.774 126.36 0-14.475 22.814 12.602 45.628 27.076 68.442z'
           transform='translate(-198.987 -154.542)'
         ></path>
@@ -315,7 +325,7 @@ export default function HeroSVG() {
         ></path>
         <circle cx='618.521' cy='472.603' r='56.41' fill='#2f2e41'></circle>
         <path
-          fill={theme.palette.secondary.main}
+          className={clsx(classes.secondaryMain)}
           d='M328.309 307.736L398.258 305.301 405.027 279.531 332.822 281.71 328.309 307.736z'
         ></path>
         <path
@@ -331,6 +341,12 @@ export default function HeroSVG() {
           d='M306.873 342.71L412.924 339.326 414.053 334.813 308.001 338.546 306.873 342.71z'
         ></path>
       </svg>
-    </div>
+    </Box>
   );
-}
+});
+
+HeroSVG.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(HeroSVG);

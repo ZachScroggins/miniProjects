@@ -62,8 +62,7 @@ const HeroBackground = React.forwardRef(function HeroBackground(props, ref) {
 });
 
 HeroBackground.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(HeroBackground);
