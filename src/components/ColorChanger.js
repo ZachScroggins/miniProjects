@@ -14,8 +14,7 @@ import {
   Typography,
   Button,
   useMediaQuery,
-  Hidden,
-  NoSsr
+  NoSsr,
 } from '@material-ui/core';
 
 const hues = Object.keys(colors).slice(1, 17);
@@ -33,64 +32,85 @@ const shades = [
   'A700',
   'A400',
   'A200',
-  'A100'
+  'A100',
 ];
 
 const styles = theme => ({
   radio: {
-    padding: 0
+    padding: 0,
+    // fontSize: '.875rem',
+    fontSize: '1em',
+  },
+  size: {
+    // fontSize: '1.5rem',
   },
   radioIcon: {
-    width: 60,
-    height: 60,
+    width: '3.75em',
+    // width: 60,
+    height: '3.75em',
+    // height: 60,
     [theme.breakpoints.up('md')]: {
-      width: 96,
-      height: 96
-    }
+      width: '6em',
+      // width: 96,
+      height: '6em',
+      // height: 96
+    },
   },
   radioIconSelected: {
-    width: 60,
-    height: 60,
+    width: '3.75em',
+    // width: 60,
+    height: '3.75em',
+    // height: 60,
     border: '1px solid white',
     color: theme.palette.common.white,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     [theme.breakpoints.up('md')]: {
-      width: 96,
-      height: 96
-    }
+      width: '6em',
+      // width: 96,
+      height: '6em',
+      // height: 96
+    },
   },
   swatch: {
-    width: 240,
+    width: '15em',
+    // width: 240,
     [theme.breakpoints.up('md')]: {
-      width: 336 * 1.142857143
-    }
+      width: '24em',
+      // width: 336 * 1.142857143
+    },
   },
   input: {
-    width: 240,
+    width: '13em',
+    // width: 240,
     [theme.breakpoints.up('md')]: {
-      width: 336 * 1.142857143
+      width: '21em',
+      // width: 336 * 1.142857143
     },
-    display: 'block'
+    display: 'block',
   },
   colorBar: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   colorSquare: {
-    width: 80,
-    height: 80,
+    width: '5em',
+    // width: 80,
+    height: '5em',
+    // height: 80,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     [theme.breakpoints.up('md')]: {
-      width: 128,
-      height: 128
-    }
+      width: '8em',
+      // width: 128,
+      height: '8em',
+      // height: 128
+    },
   },
   button: {
-    marginLeft: theme.spacing(1)
-  }
+    marginLeft: theme.spacing(1),
+  },
 });
 
 function ColorChanger(props) {
@@ -108,7 +128,7 @@ function ColorChanger(props) {
     primaryHue: 'blue',
     secondaryHue: 'pink',
     primaryShade: 4,
-    secondaryShade: 11
+    secondaryShade: 11,
   });
 
   const handleChangeColor = name => event => {
@@ -118,12 +138,12 @@ function ColorChanger(props) {
     const isHex = string => /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
 
     let {
-      target: { value: color }
+      target: { value: color },
     } = event;
 
     setState(prevState => ({
       ...prevState,
-      [`${name}Input`]: color
+      [`${name}Input`]: color,
     }));
 
     let isValidColor = false;
@@ -140,14 +160,14 @@ function ColorChanger(props) {
     if (isValidColor) {
       setState(prevState => ({
         ...prevState,
-        [name]: color
+        [name]: color,
       }));
     }
   };
 
   const handleChangeHue = name => event => {
     const {
-      target: { value: hue }
+      target: { value: hue },
     } = event;
     const color = colors[hue][shades[state[`${name}Shade`]]];
 
@@ -155,21 +175,24 @@ function ColorChanger(props) {
       ...state,
       [`${name}Hue`]: hue,
       [name]: color,
-      [`${name}Input`]: color
+      [`${name}Input`]: color,
     });
   };
 
   const handleChangeDocsColors = () => {
     const paletteColors = {
       primary: { main: state.primary },
-      secondary: { main: state.secondary }
+      secondary: { main: state.secondary },
     };
 
     setColors(paletteColors.primary.main, paletteColors.secondary.main);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleResetDocsColors = () => {
     clearColors();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const colorBar = color => {
@@ -187,7 +210,7 @@ function ColorChanger(props) {
               <Typography
                 variant='caption'
                 style={{
-                  color: theme.palette.getContrastText(background[key])
+                  color: theme.palette.getContrastText(background[key]),
                 }}
               >
                 {rgbToHex(background[key])}
@@ -205,61 +228,63 @@ function ColorChanger(props) {
 
     return (
       <Grid item container justify='center' xs={12} sm={6}>
-        <Box pb={3}>
-          <Typography
-            component='label'
-            gutterBottom
-            htmlFor={intent}
-            variant='h6'
-          >
-            {capitalize(intent)}
-          </Typography>
-          <Input
-            id={intent}
-            value={intentInput}
-            onChange={handleChangeColor(intent)}
-            color={intent === 'primary' ? 'primary' : 'secondary'}
-            className={classes.input}
-          />
-        </Box>
-        <div className={classes.swatch}>
-          {hues.map(hue => {
-            const shade =
-              intent === 'primary'
-                ? shades[state.primaryShade]
-                : shades[state.secondaryShade];
-            const backgroundColor = colors[hue][shade];
+        <Box className={classes.size}>
+          <Box pb={3}>
+            <Typography
+              component='label'
+              gutterBottom
+              htmlFor={intent}
+              variant='h6'
+            >
+              {capitalize(intent)}
+            </Typography>
+            <Input
+              id={intent}
+              value={intentInput}
+              onChange={handleChangeColor(intent)}
+              color={intent === 'primary' ? 'primary' : 'secondary'}
+              className={classes.input}
+            />
+          </Box>
+          <div className={classes.swatch}>
+            {hues.map(hue => {
+              const shade =
+                intent === 'primary'
+                  ? shades[state.primaryShade]
+                  : shades[state.secondaryShade];
+              const backgroundColor = colors[hue][shade];
 
-            return (
-              <Tooltip placement='right' title={hue} key={hue}>
-                <Radio
-                  className={classes.radio}
-                  color='default'
-                  checked={state[intent] === backgroundColor}
-                  onChange={handleChangeHue(intent)}
-                  value={hue}
-                  name={intent}
-                  aria-labelledby={`tooltip-${intent}-${hue}`}
-                  icon={
-                    <div
-                      className={classes.radioIcon}
-                      style={{ backgroundColor }}
-                    />
-                  }
-                  checkedIcon={
-                    <div
-                      className={classes.radioIconSelected}
-                      style={{ backgroundColor }}
-                    >
-                      <CheckIcon style={{ fontSize: 30 }} />
-                    </div>
-                  }
-                />
-              </Tooltip>
-            );
-          })}
-        </div>
-        {colorBar(color)}
+              return (
+                <Tooltip placement='right' title={hue} key={hue}>
+                  <Radio
+                    className={classes.radio}
+                    color='default'
+                    checked={state[intent] === backgroundColor}
+                    onChange={handleChangeHue(intent)}
+                    value={hue}
+                    name={intent}
+                    aria-labelledby={`tooltip-${intent}-${hue}`}
+                    icon={
+                      <div
+                        className={classes.radioIcon}
+                        style={{ backgroundColor }}
+                      />
+                    }
+                    checkedIcon={
+                      <div
+                        className={classes.radioIconSelected}
+                        style={{ backgroundColor }}
+                      >
+                        <CheckIcon style={{ fontSize: 30 }} />
+                      </div>
+                    }
+                  />
+                </Tooltip>
+              );
+            })}
+          </div>
+          {colorBar(color)}
+        </Box>
       </Grid>
     );
   };
@@ -287,9 +312,6 @@ function ColorChanger(props) {
           >
             Reset
           </Button>
-          <Hidden smDown>
-            <div style={{ width: '150px' }}></div>
-          </Hidden>
         </Grid>
       </Grid>
     </NoSsr>
@@ -297,7 +319,7 @@ function ColorChanger(props) {
 }
 
 ColorChanger.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ColorChanger);

@@ -1,34 +1,52 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, Box, Button } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  Box,
+  Button,
+  Paper,
+  Divider,
+} from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import Link from '../src/components/Link';
 import HeroBackground from '../src/components/layout/HeroBackground';
 import HeroSVG from '../src/components/layout/HeroSVG';
+import ColorChanger from '../src/components/ColorChanger';
+import TaskList from '../src/components/TaskList';
 
 const useStyles = makeStyles(theme => ({
   h2: {
     whiteSpace: 'nowrap',
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.9rem'
+      fontSize: '1.9rem',
     },
     '@media (max-width: 350px)': {
-      fontSize: '1.6rem'
-    }
+      fontSize: '1.6rem',
+    },
   },
   h3: {
-    fontWeight: 300
+    fontWeight: 300,
   },
   textContainer: {
     justifyContent: 'flex-start',
     [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center'
-    }
+      justifyContent: 'center',
+    },
   },
   svgContainer: {
     justifyContent: 'flex-end',
     [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center'
-    }
-  }
+      justifyContent: 'center',
+    },
+  },
+  subtitle: {
+    fontWeight: 300,
+  },
+  padding: {
+    '@media (max-width: 350px)': {
+      padding: 15,
+    },
+  },
 }));
 
 export default function Index() {
@@ -45,7 +63,8 @@ export default function Index() {
           md={6}
           className={classes.textContainer}
         >
-          <Box pt={{ xs: 2, md: 10 }}>
+          <Box pt={{ xs: 2, md: 0 }}>
+            {/* <Box pt={{ xs: 2, md: 0, xl: 30 }}> */}
             <Box color='secondary.contrastText'>
               <Typography
                 variant='h2'
@@ -70,7 +89,7 @@ export default function Index() {
                   color='inherit'
                   className={classes.h3}
                 >
-                  Recreated with React
+                  Created with React
                 </Typography>
               </Box>
             </Box>
@@ -80,6 +99,9 @@ export default function Index() {
                 color='primary'
                 size='large'
                 startIcon={<ArrowDownwardIcon />}
+                component={Link}
+                naked
+                href='#changecolor'
               >
                 Check it out!
               </Button>
@@ -87,9 +109,99 @@ export default function Index() {
           </Box>
         </Grid>
         <Grid item container className={classes.svgContainer} xs={12} md={6}>
-          <Box pt={{ xs: 6, md: 10 }}>
+          <Box pt={{ xs: 6, md: 0 }} mb={{ xs: 15, md: 28, lg: 32 }}>
+            {/* <Box pt={{ xs: 6, md: 0, xl: 30 }} mb={{ xs: 15, md: 28, xl: 75 }}> */}
             <HeroSVG />
           </Box>
+        </Grid>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box height={80} id='changecolor'>
+              {' '}
+            </Box>
+            <Paper elevation={3}>
+              <Box p={3} className={classes.padding}>
+                <Box pb={2}>
+                  <Box pb={1}>
+                    <Typography variant='h4' component='h2' align='center'>
+                      Color Changer
+                    </Typography>
+                  </Box>
+                  <Typography
+                    variant='h6'
+                    align='center'
+                    className={classes.subtitle}
+                  >
+                    Change the color theme of the whole website.
+                  </Typography>
+                </Box>
+                <Box pb={2}>
+                  <Divider />
+                </Box>
+                <ColorChanger />
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={3}>
+              <Box p={3} className={classes.padding}>
+                <Box pb={2}>
+                  <Typography variant='h4' component='h2' align='center'>
+                    Task List
+                  </Typography>
+                  <Box py={2}>
+                    <Divider />
+                  </Box>
+                  <TaskList />
+                </Box>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={3}>
+              <Box p={3} className={classes.padding}>
+                <Box pb={2}>
+                  <Typography variant='h4' component='h2' align='center'>
+                    Calorie Tracker
+                  </Typography>
+                  <Box py={2}>
+                    <Divider />
+                  </Box>
+                  <TaskList />
+                </Box>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={3}>
+              <Box p={3} className={classes.padding}>
+                <Box pb={2}>
+                  <Typography variant='h4' component='h2' align='center'>
+                    Loan Calculator
+                  </Typography>
+                  <Box py={2}>
+                    <Divider />
+                  </Box>
+                  <TaskList />
+                </Box>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={3}>
+              <Box p={3} className={classes.padding}>
+                <Box pb={2}>
+                  <Typography variant='h4' component='h2' align='center'>
+                    Joke Generator
+                  </Typography>
+                  <Box py={2}>
+                    <Divider />
+                  </Box>
+                  <TaskList />
+                </Box>
+              </Box>
+            </Paper>
+          </Grid>
         </Grid>
         <HeroBackground />
       </Grid>

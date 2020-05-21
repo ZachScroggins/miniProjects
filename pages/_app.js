@@ -23,7 +23,7 @@ export default function MyApp(props) {
   return (
     <React.Fragment>
       <Head>
-        <title>miniCMS</title>
+        <title>miniProjects</title>
       </Head>
       <CookiesProvider cookies={isBrowser() ? undefined : cookies}>
         <ColorState>

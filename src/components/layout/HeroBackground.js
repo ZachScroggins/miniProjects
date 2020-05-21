@@ -11,21 +11,27 @@ export const styles = theme => {
       top: 0,
       left: 0,
       zIndex: -1,
-      overflow: 'hidden'
+      overflow: 'hidden',
     },
     heroBackground: {
       width: 'auto',
       height: '65em',
       [theme.breakpoints.up('sm')]: {
-        height: '82em'
-      }
+        height: '75em',
+      },
+      [theme.breakpoints.up('lg')]: {
+        height: '80em',
+      },
+      // [theme.breakpoints.up('xl')]: {
+      //   height: '140em',
+      // },
     },
     secondary: {
-      stopColor: theme.palette.secondary.main
+      stopColor: theme.palette.secondary.main,
     },
     primary: {
-      stopColor: theme.palette.primary.main
-    }
+      stopColor: theme.palette.primary.main,
+    },
   };
 };
 
@@ -33,7 +39,7 @@ const HeroBackground = React.forwardRef(function HeroBackground(props, ref) {
   const { classes } = props;
 
   return (
-    <Box className={classes.heroContainer} ref={ref}>
+    <Box className={classes.heroContainer} ref={ref} id='home'>
       <svg
         // classes={{ root: classes.heroBackground }}
         className={classes.heroBackground}
@@ -62,7 +68,7 @@ const HeroBackground = React.forwardRef(function HeroBackground(props, ref) {
 });
 
 HeroBackground.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(HeroBackground);

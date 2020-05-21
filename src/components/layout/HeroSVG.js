@@ -6,27 +6,35 @@ import { Box } from '@material-ui/core';
 export const styles = theme => {
   return {
     svgContainer: {
-      overflow: 'hidden'
+      overflow: 'hidden',
     },
     svg: {
-      width: 500,
+      width: '35.71em',
+      // width: 500,
       [theme.breakpoints.down('sm')]: {
-        width: 400,
-        transform: 'scaleX(-1)'
+        width: '28.57em',
+        // width: 400,
+        transform: 'scaleX(-1)',
       },
       [theme.breakpoints.down('xs')]: {
-        width: 270
+        width: '19.29em',
+        // width: 270
       },
+      // [theme.breakpoints.up('xl')]: {
+      //   width: '5em',
+      //
+      // },
       '@media (max-width: 350px)': {
-        width: 230
-      }
+        width: '16.43em',
+        // width: 230
+      },
     },
     secondaryMain: {
-      fill: theme.palette.secondary.main
+      fill: theme.palette.secondary.main,
     },
     secondaryDark: {
-      fill: theme.palette.secondary.dark
-    }
+      fill: theme.palette.secondary.dark,
+    },
   };
 };
 
@@ -346,7 +354,7 @@ const HeroSVG = React.forwardRef(function HeroSVG(props, ref) {
 });
 
 HeroSVG.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(HeroSVG);

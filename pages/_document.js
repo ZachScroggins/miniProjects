@@ -6,7 +6,7 @@ import { themeColor } from '../src/components/ThemeProvider';
 export default class MyDocument extends Document {
   render() {
     return (
-      <html lang='en'>
+      <html lang='en' style={{ scrollBehavior: 'smooth' }}>
         <Head>
           <meta name='description' content='mini content management system' />
           <meta name='theme-color' content={themeColor} />
@@ -57,7 +57,7 @@ MyDocument.getInitialProps = async ctx => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: App => props => sheets.collect(<App {...props} />)
+      enhanceApp: App => props => sheets.collect(<App {...props} />),
     });
 
   const initialProps = await Document.getInitialProps(ctx);
@@ -67,7 +67,7 @@ MyDocument.getInitialProps = async ctx => {
     // Styles fragment is rendered after the app and page rendering finish.
     styles: [
       ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement()
-    ]
+      sheets.getStyleElement(),
+    ],
   };
 };
