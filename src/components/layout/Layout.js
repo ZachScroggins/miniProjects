@@ -136,7 +136,7 @@ function Layout(props) {
       <List component='nav'>
         <ListItem button component={Link} naked href='#home'>
           <ListItemIcon>
-            <HomeIcon color='secondary' />
+            <HomeIcon />
           </ListItemIcon>
           <ListItemText disableTypography={true}>
             <Typography variant='h6'>Home</Typography>
@@ -144,7 +144,7 @@ function Layout(props) {
         </ListItem>
         <ListItem button component={Link} naked href='#changecolor'>
           <ListItemIcon>
-            <PaletteIcon color='secondary' />
+            <PaletteIcon />
           </ListItemIcon>
           <ListItemText disableTypography={true}>
             <Typography variant='h6'>Change Color</Typography>
@@ -152,11 +152,7 @@ function Layout(props) {
         </ListItem>
         <ListItem button onClick={handleDarkLight}>
           <ListItemIcon>
-            {type === 'light' ? (
-              <Brightness4Icon color='secondary' />
-            ) : (
-              <Brightness5Icon color='secondary' />
-            )}
+            {type === 'light' ? <Brightness4Icon /> : <Brightness5Icon />}
           </ListItemIcon>
           <ListItemText disableTypography={true}>
             <Typography variant='h6'>Dark/Light</Typography>
@@ -167,7 +163,7 @@ function Layout(props) {
       <List component='nav'>
         <ListItem button component='a' href='https://www.github.com'>
           <ListItemIcon>
-            <GitHubIcon color='secondary' />
+            <GitHubIcon />
           </ListItemIcon>
           <ListItemText disableTypography={true}>
             <Typography variant='h6'>Github</Typography>
@@ -175,7 +171,7 @@ function Layout(props) {
         </ListItem>
         <ListItem button component='a' href='https://www.codesandbox.io'>
           <ListItemIcon>
-            <CodeIcon color='secondary' />
+            <CodeIcon />
           </ListItemIcon>
           <ListItemText disableTypography={true}>
             <Typography variant='h6'>CodeSandbox</Typography>
@@ -183,7 +179,7 @@ function Layout(props) {
         </ListItem>
         <ListItem button component='a' href='https://www.zachscroggins.com'>
           <ListItemIcon>
-            <ArrowBackIcon color='secondary' />
+            <ArrowBackIcon />
           </ListItemIcon>
           <ListItemText disableTypography={true}>
             <Typography variant='h6'>My Work</Typography>
@@ -216,7 +212,7 @@ function Layout(props) {
             <Hidden lgUp>
               <Tooltip title='Blog' enterDelay={300}>
                 <IconButton
-                  color='secondary'
+                  color='inherit'
                   aria-label='blog'
                   component={Link}
                   naked
@@ -227,7 +223,7 @@ function Layout(props) {
               </Tooltip>
               <Tooltip title='Github' enterDelay={300}>
                 <IconButton
-                  color='secondary'
+                  color='inherit'
                   aria-label='github'
                   component={Link}
                   naked
@@ -243,11 +239,7 @@ function Layout(props) {
                   aria-label='darkLight'
                   onClick={handleDarkLight}
                 >
-                  {type === 'light' ? (
-                    <Brightness4Icon color='secondary' />
-                  ) : (
-                    <Brightness5Icon color='secondary' />
-                  )}
+                  {type === 'light' ? <Brightness4Icon /> : <Brightness5Icon />}
                 </IconButton>
               </Tooltip>
             </Hidden>

@@ -13,6 +13,9 @@ import HeroBackground from '../src/components/layout/HeroBackground';
 import HeroSVG from '../src/components/layout/HeroSVG';
 import ColorChanger from '../src/components/ColorChanger';
 import TaskList from '../src/components/TaskList';
+import JokeGenerator from '../src/components/JokeGenerator';
+import LoanCalculator from '../src/components/LoanCalculator';
+import CalorieTracker from '../src/components/CalorieTracker';
 
 const useStyles = makeStyles(theme => ({
   h2: {
@@ -167,7 +170,7 @@ export default function Index() {
                   <Box py={2}>
                     <Divider />
                   </Box>
-                  <TaskList />
+                  <CalorieTracker />
                 </Box>
               </Box>
             </Paper>
@@ -182,7 +185,7 @@ export default function Index() {
                   <Box py={2}>
                     <Divider />
                   </Box>
-                  <TaskList />
+                  <LoanCalculator />
                 </Box>
               </Box>
             </Paper>
@@ -191,13 +194,22 @@ export default function Index() {
             <Paper elevation={3}>
               <Box p={3} className={classes.padding}>
                 <Box pb={2}>
-                  <Typography variant='h4' component='h2' align='center'>
-                    Joke Generator
+                  <Box pb={1}>
+                    <Typography variant='h4' component='h2' align='center'>
+                      Joke Generator
+                    </Typography>
+                  </Box>
+                  <Typography
+                    variant='h6'
+                    align='center'
+                    className={classes.subtitle}
+                  >
+                    Fetch jokes from ICNDB API.
                   </Typography>
                   <Box py={2}>
                     <Divider />
                   </Box>
-                  <TaskList />
+                  <JokeGenerator />
                 </Box>
               </Box>
             </Paper>

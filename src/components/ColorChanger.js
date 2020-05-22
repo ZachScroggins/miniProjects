@@ -304,7 +304,7 @@ function ColorChanger(props) {
             Set Colors
           </Button>
           <Button
-            variant='outlined'
+            variant='contained'
             color='secondary'
             onClick={handleResetDocsColors}
             className={classes.button}

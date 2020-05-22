@@ -13,7 +13,8 @@
     "prop-types": "latest",
     "react": "latest",
     "react-cookie": "^4.0.3",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "uuidv4": "^6.0.9"
   },
   "scripts": {
     "dev": "next",
