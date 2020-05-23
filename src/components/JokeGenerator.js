@@ -1,16 +1,28 @@
 import { useState } from 'react';
 import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
-import { Box, Button, List, ListItem, ListItemText } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  CircularProgress,
+} from '@material-ui/core';
 
 const JokeGenerator = () => {
   const [jokes, setJokes] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getJokes = async () => {
+    setLoading(true);
+
     let res = await fetch('https://api.icndb.com/jokes/random/5');
 
     let data = await res.json();
 
     setJokes(data.value);
+
+    setLoading(false);
   };
 
   return (
@@ -27,13 +39,27 @@ const JokeGenerator = () => {
           Get Jokes
         </Button>
       </Box>
-      <List>
+      {loading ? (
+        <Box display='flex' justifyContent='center'>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <List>
+          {jokes.map(joke => (
+            <ListItem key={joke.id}>
+              <ListItemText primary={joke.joke} />
+            </ListItem>
+          ))}
+        </List>
+      )}
+
+      {/* <List>
         {jokes.map(joke => (
           <ListItem key={joke.id}>
             <ListItemText primary={joke.joke} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </Box>
   );
 };
