@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import ColorContext from '../context/color/colorContext';
 import PropTypes from 'prop-types';
-import { rgbToHex, withStyles, useTheme } from '@material-ui/core/styles';
+import ColorContext from '../context/color/colorContext';
 import * as colors from '@material-ui/core/colors';
-import CheckIcon from '@material-ui/icons/Check';
+import { rgbToHex, withStyles, useTheme } from '@material-ui/core/styles';
 import { capitalize } from '@material-ui/core/utils';
+import CheckIcon from '@material-ui/icons/Check';
 import {
   Box,
   Grid,
@@ -38,29 +38,19 @@ const shades = [
 const styles = theme => ({
   radio: {
     padding: 0,
-    // fontSize: '.875rem',
     fontSize: '1em',
-  },
-  size: {
-    // fontSize: '1.5rem',
   },
   radioIcon: {
     width: '3.75em',
-    // width: 60,
     height: '3.75em',
-    // height: 60,
     [theme.breakpoints.up('md')]: {
       width: '6em',
-      // width: 96,
       height: '6em',
-      // height: 96
     },
   },
   radioIconSelected: {
     width: '3.75em',
-    // width: 60,
     height: '3.75em',
-    // height: 60,
     border: '1px solid white',
     color: theme.palette.common.white,
     display: 'flex',
@@ -68,25 +58,19 @@ const styles = theme => ({
     alignItems: 'center',
     [theme.breakpoints.up('md')]: {
       width: '6em',
-      // width: 96,
       height: '6em',
-      // height: 96
     },
   },
   swatch: {
     width: '15em',
-    // width: 240,
     [theme.breakpoints.up('md')]: {
       width: '24em',
-      // width: 336 * 1.142857143
     },
   },
   input: {
     width: '13em',
-    // width: 240,
     [theme.breakpoints.up('md')]: {
       width: '21em',
-      // width: 336 * 1.142857143
     },
     display: 'block',
   },
@@ -95,17 +79,13 @@ const styles = theme => ({
   },
   colorSquare: {
     width: '5em',
-    // width: 80,
     height: '5em',
-    // height: 80,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     [theme.breakpoints.up('md')]: {
       width: '8em',
-      // width: 128,
       height: '8em',
-      // height: 128
     },
   },
   button: {
@@ -228,7 +208,7 @@ function ColorChanger(props) {
 
     return (
       <Grid item container justify='center' xs={12} sm={6}>
-        <Box className={classes.size}>
+        <Box>
           <Box pb={3}>
             <Typography
               component='label'
@@ -304,6 +284,7 @@ function ColorChanger(props) {
             Set Colors
           </Button>
           <Button
+            id='tasklist'
             variant='contained'
             color='secondary'
             onClick={handleResetDocsColors}

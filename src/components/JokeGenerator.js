@@ -52,14 +52,6 @@ const JokeGenerator = () => {
           ))}
         </List>
       )}
-
-      {/* <List>
-        {jokes.map(joke => (
-          <ListItem key={joke.id}>
-            <ListItemText primary={joke.joke} />
-          </ListItem>
-        ))}
-      </List> */}
     </Box>
   );
 };

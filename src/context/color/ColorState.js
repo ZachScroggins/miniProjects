@@ -5,7 +5,7 @@ import ColorReducer from './colorReducer';
 import {
   SET_PALETTE_COLOR,
   CLEAR_PALETTE_COLOR,
-  SET_PALETTE_TYPE
+  SET_PALETTE_TYPE,
 } from '../types';
 
 const ColorState = props => {
@@ -19,13 +19,13 @@ const ColorState = props => {
   const [state, dispatch] = useReducer(ColorReducer, {
     primaryMain: ifCookies() ? cookies.palette.primaryMain : '#3f51b5',
     secondaryMain: ifCookies() ? cookies.palette.secondaryMain : '#f50057',
-    type: ifCookies() ? cookies.palette.type : 'light'
+    type: ifCookies() ? cookies.palette.type : 'light',
   });
 
   const setColors = (primary, secondary) => {
     const colors = {
       primary,
-      secondary
+      secondary,
     };
 
     dispatch({ type: SET_PALETTE_COLOR, payload: colors });
@@ -35,22 +35,16 @@ const ColorState = props => {
       { primaryMain: primary, secondaryMain: secondary, type: state.type },
       { path: '/', maxAge: 60 * 60 * 24 * 30 }
     );
-    // setCookie(
-    //   'palette',
-    //   { primaryMain: primary, secondaryMain: secondary },
-    //   { path: '/', maxAge: 60 * 60 * 24 * 30 }
-    // );
   };
 
   const clearColors = () => {
     const colors = {
       primary: '#3f51b5',
-      secondary: '#f50057'
+      secondary: '#f50057',
     };
 
     dispatch({ type: CLEAR_PALETTE_COLOR, payload: colors });
 
-    // removeCookie('palette');
     setCookie(
       'palette',
       { primaryMain: '#3f51b5', secondaryMain: '#f50057', type: state.type },
@@ -58,18 +52,16 @@ const ColorState = props => {
     );
   };
 
-  // try using string called type as parameter and pass function 'light' or 'dark'
   const setType = prefersDarkMode => {
     if (prefersDarkMode === true) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'dark' });
 
-      // setCookie('type', 'dark', { path: '/', maxAge: 60 * 60 * 24 * 30 });
       setCookie(
         'palette',
         {
           primaryMain: state.primaryMain,
           secondaryMain: state.secondaryMain,
-          type: 'dark'
+          type: 'dark',
         },
         { path: '/', maxAge: 60 * 60 * 24 * 30 }
       );
@@ -77,13 +69,12 @@ const ColorState = props => {
     if (prefersDarkMode === false) {
       dispatch({ type: SET_PALETTE_TYPE, payload: 'light' });
 
-      // setCookie('type', 'light', { path: '/', maxAge: 60 * 60 * 24 * 30 });
       setCookie(
         'palette',
         {
           primaryMain: state.primaryMain,
           secondaryMain: state.secondaryMain,
-          type: 'light'
+          type: 'light',
         },
         { path: '/', maxAge: 60 * 60 * 24 * 30 }
       );
@@ -98,7 +89,7 @@ const ColorState = props => {
         type: state.type,
         setColors,
         clearColors,
-        setType
+        setType,
       }}
     >
       {props.children}

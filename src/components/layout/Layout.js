@@ -1,8 +1,6 @@
 import { useState, useContext } from 'react';
-
 import Link from '../Link';
 import ColorContext from '../../context/color/colorContext';
-
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
@@ -11,7 +9,10 @@ import PaletteIcon from '@material-ui/icons/Palette';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import CodeIcon from '@material-ui/icons/Code';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {
   AppBar,
@@ -30,10 +31,7 @@ import {
   Container,
 } from '@material-ui/core';
 
-// const drawerWidth = '13.125rem';
-const drawerWidth = '16.875em';
-// const drawerWidth = '15rem';
-// const drawerWidth = 240;
+const drawerWidth = '18em';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,7 +46,6 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     [theme.breakpoints.up('lg')]: {
       width: `calc(100% - ${drawerWidth})`,
-      // width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
   },
@@ -147,7 +144,39 @@ function Layout(props) {
             <PaletteIcon />
           </ListItemIcon>
           <ListItemText disableTypography={true}>
-            <Typography variant='h6'>Change Color</Typography>
+            <Typography variant='h6'>Color Changer</Typography>
+          </ListItemText>
+        </ListItem>
+        <ListItem button component={Link} naked href='#tasklist'>
+          <ListItemIcon>
+            <AssignmentIcon />
+          </ListItemIcon>
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>Task List</Typography>
+          </ListItemText>
+        </ListItem>
+        <ListItem button component={Link} naked href='#calorietracker'>
+          <ListItemIcon>
+            <FastfoodIcon />
+          </ListItemIcon>
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>Calorie Tracker</Typography>
+          </ListItemText>
+        </ListItem>
+        <ListItem button component={Link} naked href='#loancalculator'>
+          <ListItemIcon>
+            <MonetizationOnIcon />
+          </ListItemIcon>
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>Loan Calculator</Typography>
+          </ListItemText>
+        </ListItem>
+        <ListItem button component={Link} naked href='#jokegenerator'>
+          <ListItemIcon>
+            <EmojiEmotionsIcon />
+          </ListItemIcon>
+          <ListItemText disableTypography={true}>
+            <Typography variant='h6'>Joke Generator</Typography>
           </ListItemText>
         </ListItem>
         <ListItem button onClick={handleDarkLight}>
@@ -167,14 +196,6 @@ function Layout(props) {
           </ListItemIcon>
           <ListItemText disableTypography={true}>
             <Typography variant='h6'>Github</Typography>
-          </ListItemText>
-        </ListItem>
-        <ListItem button component='a' href='https://www.codesandbox.io'>
-          <ListItemIcon>
-            <CodeIcon />
-          </ListItemIcon>
-          <ListItemText disableTypography={true}>
-            <Typography variant='h6'>CodeSandbox</Typography>
           </ListItemText>
         </ListItem>
         <ListItem button component='a' href='https://www.zachscroggins.com'>
@@ -203,11 +224,9 @@ function Layout(props) {
             >
               <MenuIcon />
             </IconButton>
-            {/* <Hidden xsDown> */}
             <Typography variant='h5' noWrap>
               miniProjects
             </Typography>
-            {/* </Hidden> */}
             <div className={classes.grow} />
             <Hidden lgUp>
               <Tooltip title='Blog' enterDelay={300}>
@@ -232,7 +251,6 @@ function Layout(props) {
                   <GitHubIcon />
                 </IconButton>
               </Tooltip>
-
               <Tooltip title='Dark/Light' enterDelay={300}>
                 <IconButton
                   color='inherit'

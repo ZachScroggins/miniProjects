@@ -10,23 +10,15 @@ export const styles = theme => {
     },
     svg: {
       width: '35.71em',
-      // width: 500,
       [theme.breakpoints.down('sm')]: {
         width: '28.57em',
-        // width: 400,
         transform: 'scaleX(-1)',
       },
       [theme.breakpoints.down('xs')]: {
         width: '19.29em',
-        // width: 270
       },
-      // [theme.breakpoints.up('xl')]: {
-      //   width: '5em',
-      //
-      // },
       '@media (max-width: 350px)': {
         width: '16.43em',
-        // width: 230
       },
     },
     secondaryMain: {

@@ -1,13 +1,3 @@
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  Grid,
-  Typography,
-  Box,
-  Button,
-  Paper,
-  Divider,
-} from '@material-ui/core';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import Link from '../src/components/Link';
 import HeroBackground from '../src/components/layout/HeroBackground';
 import HeroSVG from '../src/components/layout/HeroSVG';
@@ -16,6 +6,16 @@ import TaskList from '../src/components/TaskList';
 import JokeGenerator from '../src/components/JokeGenerator';
 import LoanCalculator from '../src/components/LoanCalculator';
 import CalorieTracker from '../src/components/CalorieTracker';
+import { makeStyles } from '@material-ui/core/styles';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import {
+  Grid,
+  Typography,
+  Box,
+  Button,
+  Paper,
+  Divider,
+} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   h2: {
@@ -58,16 +58,8 @@ export default function Index() {
   return (
     <Box>
       <Grid container>
-        <Grid
-          item
-          container
-          // justify='flex-start'
-          xs={12}
-          md={6}
-          className={classes.textContainer}
-        >
-          <Box pt={{ xs: 2, md: 0 }}>
-            {/* <Box pt={{ xs: 2, md: 0, xl: 30 }}> */}
+        <Grid item container xs={12} md={6} className={classes.textContainer}>
+          <Box pt={{ xs: 2, lg: 0 }}>
             <Box color='secondary.contrastText'>
               <Typography
                 variant='h2'
@@ -112,8 +104,7 @@ export default function Index() {
           </Box>
         </Grid>
         <Grid item container className={classes.svgContainer} xs={12} md={6}>
-          <Box pt={{ xs: 6, md: 0 }} mb={{ xs: 15, md: 28, lg: 32 }}>
-            {/* <Box pt={{ xs: 6, md: 0, xl: 30 }} mb={{ xs: 15, md: 28, xl: 75 }}> */}
+          <Box pt={{ xs: 6, md: 2, lg: 0 }} mb={{ xs: 15, md: 28, lg: 32 }}>
             <HeroSVG />
           </Box>
         </Grid>
@@ -195,7 +186,12 @@ export default function Index() {
               <Box p={3} className={classes.padding}>
                 <Box pb={2}>
                   <Box pb={1}>
-                    <Typography variant='h4' component='h2' align='center'>
+                    <Typography
+                      variant='h4'
+                      component='h2'
+                      align='center'
+                      id='jokegenerator'
+                    >
                       Joke Generator
                     </Typography>
                   </Box>

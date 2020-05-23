@@ -186,7 +186,6 @@ const CalorieTracker = () => {
           ))}
         </List>
       </Box>
-      {/* <Box display='flex'></Box> */}
       <Grid
         container
         direction='row'
@@ -204,7 +203,7 @@ const CalorieTracker = () => {
           </Button>
         </Grid>
         <Grid item>
-          <Fab color='secondary' onClick={handleFabOpen}>
+          <Fab color='secondary' onClick={handleFabOpen} id='loancalculator'>
             <AddIcon />
           </Fab>
         </Grid>

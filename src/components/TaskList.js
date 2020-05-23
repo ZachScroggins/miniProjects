@@ -1,7 +1,7 @@
 import { useState, useEffect, forwardRef } from 'react';
 import { uuid } from 'uuidv4';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 import {
   Box,
   List,
@@ -45,6 +45,7 @@ const TaskList = () => {
     { id: uuid(), value: 'Walk dog (click to edit)', checked: false },
     { id: uuid(), value: 'Get groceries', checked: false },
     { id: uuid(), value: 'Water plants', checked: false },
+    { id: uuid(), value: 'Work out', checked: false },
   ]);
 
   useEffect(() => {
@@ -157,6 +158,7 @@ const TaskList = () => {
       </List>
       <Box display='flex' justifyContent='center' pt={2}>
         <Button
+          id='calorietracker'
           aria-label='add-task'
           color='primary'
           onClick={handleFabOpen}
