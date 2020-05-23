@@ -120,7 +120,7 @@ export default function Index() {
         </Grid>
         <Grid container spacing={4}>
           <Grid item xs={12}>
-            <Box height={80} id='changecolor'>
+            <Box height={50} id='changecolor'>
               {' '}
             </Box>
             <Paper elevation={3}>
