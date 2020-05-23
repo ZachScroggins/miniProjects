@@ -25,4 +25,6 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+.firebase
+
 package-lock.json

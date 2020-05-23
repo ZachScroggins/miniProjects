@@ -190,7 +190,11 @@ function Layout(props) {
       </List>
       <Divider />
       <List component='nav'>
-        <ListItem button component='a' href='https://www.github.com'>
+        <ListItem
+          button
+          component='a'
+          href='https://github.com/ZachScroggins/miniProjects/tree/master'
+        >
           <ListItemIcon>
             <GitHubIcon />
           </ListItemIcon>
@@ -246,7 +250,7 @@ function Layout(props) {
                   aria-label='github'
                   component={Link}
                   naked
-                  href='https://www.github.com'
+                  href='https://github.com/ZachScroggins/miniProjects/tree/master'
                 >
                   <GitHubIcon />
                 </IconButton>
