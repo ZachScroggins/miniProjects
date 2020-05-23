@@ -50,6 +50,16 @@ const useStyles = makeStyles(theme => ({
       padding: 15,
     },
   },
+  tasks: {
+    [theme.breakpoints.up('md')]: {
+      minHeight: '25rem',
+    },
+  },
+  jokes: {
+    [theme.breakpoints.up('md')]: {
+      minHeight: '24.9rem',
+    },
+  },
 }));
 
 export default function Index() {
@@ -137,7 +147,7 @@ export default function Index() {
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Paper elevation={3}>
+            <Paper elevation={3} className={classes.tasks}>
               <Box p={3} className={classes.padding}>
                 <Box pb={2}>
                   <Typography variant='h4' component='h2' align='center'>
@@ -182,7 +192,7 @@ export default function Index() {
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Paper elevation={3}>
+            <Paper elevation={3} className={classes.jokes}>
               <Box p={3} className={classes.padding}>
                 <Box pb={2}>
                   <Box pb={1}>
