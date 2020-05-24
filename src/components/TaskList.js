@@ -43,9 +43,8 @@ const TaskList = () => {
   const [editErr, setEditErr] = useState(false);
   const [tasks, setTasks] = useState([
     { id: uuid(), value: 'Walk dog (click to edit)', checked: false },
-    { id: uuid(), value: 'Get groceries', checked: false },
+    { id: uuid(), value: 'Get groceries', checked: true },
     { id: uuid(), value: 'Water plants', checked: false },
-    { id: uuid(), value: 'Work out', checked: false },
   ]);
 
   useEffect(() => {
