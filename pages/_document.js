@@ -14,6 +14,11 @@ export default class MyDocument extends Document {
             name='viewport'
             content='minimum-scale=1, initial-scale=1, width=device-width'
           />
+          <link
+            rel='preconnect'
+            href='https://fonts.googleapis.com'
+            crossOrigin
+          />
           <link rel='dns-prefetch' href='https://fonts.googleapis.com' />
           <link
             rel='stylesheet'
