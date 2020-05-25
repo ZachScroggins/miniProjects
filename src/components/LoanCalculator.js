@@ -85,6 +85,7 @@ const LoanCalculator = () => {
       <Box pb={2}>
         <TextField
           label='Loan Amount'
+          id='Loan Amount'
           variant='outlined'
           fullWidth
           color='secondary'
@@ -100,6 +101,7 @@ const LoanCalculator = () => {
       <Box pb={2}>
         <TextField
           label='Interest'
+          id='Interest'
           variant='outlined'
           fullWidth
           color='secondary'
@@ -115,6 +117,7 @@ const LoanCalculator = () => {
       <Box pb={2}>
         <TextField
           label='Years to Repay'
+          id='Years-to-Repay'
           variant='outlined'
           fullWidth
           color='secondary'

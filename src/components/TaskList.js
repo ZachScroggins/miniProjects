@@ -148,7 +148,7 @@ const TaskList = () => {
                 checked={task.checked}
                 onChange={() => handleCheck(task)}
                 disableRipple
-                inputProps={{ 'aria-labelledby': task.value }}
+                inputProps={{ 'aria-label': `${task.checked}` }}
                 color='primary'
               />
             </ListItemSecondaryAction>

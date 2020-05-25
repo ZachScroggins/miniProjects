@@ -243,7 +243,8 @@ function ColorChanger(props) {
                     onChange={handleChangeHue(intent)}
                     value={hue}
                     name={intent}
-                    aria-labelledby={`tooltip-${intent}-${hue}`}
+                    // aria-label={`tooltip-${intent}-${hue}`}
+                    inputProps={{ 'aria-label': `tooltip-${intent}-${hue}` }}
                     icon={
                       <div
                         className={classes.radioIcon}

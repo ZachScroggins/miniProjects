@@ -177,7 +177,12 @@ const CalorieTracker = () => {
       <Box pb={2}>
         <List>
           {meals.map(meal => (
-            <ListItem key={meal.id} button onClick={() => handleEditOpen(meal)}>
+            <ListItem
+              key={meal.id}
+              button
+              onClick={() => handleEditOpen(meal)}
+              component='li'
+            >
               <ListItemText
                 primary={`${meal.meal}: ${meal.calories} Calories`}
               />
@@ -203,7 +208,12 @@ const CalorieTracker = () => {
           </Button>
         </Grid>
         <Grid item>
-          <Fab color='secondary' onClick={handleFabOpen} id='loancalculator'>
+          <Fab
+            color='secondary'
+            onClick={handleFabOpen}
+            id='loancalculator'
+            aria-label='add meal'
+          >
             <AddIcon />
           </Fab>
         </Grid>
