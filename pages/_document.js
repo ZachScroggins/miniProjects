@@ -8,7 +8,10 @@ export default class MyDocument extends Document {
     return (
       <html lang='en' style={{ scrollBehavior: 'smooth' }}>
         <Head>
-          <meta name='description' content='mini content management system' />
+          <meta
+            name='description'
+            content='A collection of small JavaScript projects'
+          />
           <meta name='theme-color' content={themeColor} />
           <meta
             name='viewport'
