@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "miniprojects-a9dd6",
+    "site": "zss-miniprojects",
     "public": "./out",
     "headers": [
       {
