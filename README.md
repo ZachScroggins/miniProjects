@@ -4,7 +4,7 @@ A collection of small JavaScript projects, created with React, [Next.js](https:/
 
 ## Color Changer
 
-Change the color theme of the whole website. Pick from preset colors or enter hex code. Uses cookies to persist color choices and Context API to manage state. The color theme is integrated with custom SVG background I made in Adobe Illustrator and SVG from undraw.co. Used React.forwardRef() and [clsx](https://github.com/lukeed/clsx) to integrate SVG's with Material-UI theme colors.
+Change the color theme of the whole website. Pick from preset colors or enter hex code. Uses cookies to persist color choices and Context API to manage state. The color theme is integrated with custom SVG background I made in Adobe Illustrator and SVG from [undraw](https://undraw.co/). Used React.forwardRef() and [clsx](https://github.com/lukeed/clsx) to integrate SVG's with Material-UI theme colors.
 
 ## Task List
 
