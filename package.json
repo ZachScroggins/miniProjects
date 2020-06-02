@@ -1,5 +1,5 @@
 {
-  "name": "mini-cms",
+  "name": "mini-projects",
   "version": "1.0.0",
   "license": "MIT",
   "author": "Zach Scroggins",
@@ -7,7 +7,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "latest",
-    "clsx": "latest",
+    "clsx": "^1.1.1",
     "firebase": "^7.14.3",
     "next": "^9.3.6",
     "prop-types": "latest",
