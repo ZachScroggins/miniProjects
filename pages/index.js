@@ -1,13 +1,13 @@
-import Link from '../src/components/Link';
-import HeroBackground from '../src/components/layout/HeroBackground';
-import HeroSVG from '../src/components/layout/HeroSVG';
-import ColorChanger from '../src/components/ColorChanger';
-import TaskList from '../src/components/TaskList';
-import JokeGenerator from '../src/components/JokeGenerator';
-import LoanCalculator from '../src/components/LoanCalculator';
-import CalorieTracker from '../src/components/CalorieTracker';
-import { makeStyles } from '@material-ui/core/styles';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import Link from "../src/components/Link";
+import HeroBackground from "../src/components/layout/HeroBackground";
+import HeroSVG from "../src/components/layout/HeroSVG";
+import ColorChanger from "../src/components/ColorChanger";
+import TaskList from "../src/components/TaskList";
+import JokeGenerator from "../src/components/JokeGenerator";
+import LoanCalculator from "../src/components/LoanCalculator";
+import CalorieTracker from "../src/components/CalorieTracker";
+import { makeStyles } from "@material-ui/core/styles";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import {
   Grid,
   Typography,
@@ -15,49 +15,49 @@ import {
   Button,
   Paper,
   Divider,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   h2: {
-    whiteSpace: 'nowrap',
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '1.9rem',
+    whiteSpace: "nowrap",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.9rem",
     },
-    '@media (max-width: 350px)': {
-      fontSize: '1.6rem',
+    "@media (max-width: 350px)": {
+      fontSize: "1.6rem",
     },
   },
   h3: {
     fontWeight: 300,
   },
   textContainer: {
-    justifyContent: 'flex-start',
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
+    justifyContent: "flex-start",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
     },
   },
   svgContainer: {
-    justifyContent: 'flex-end',
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
+    justifyContent: "flex-end",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
     },
   },
   subtitle: {
     fontWeight: 300,
   },
   padding: {
-    '@media (max-width: 350px)': {
+    "@media (max-width: 350px)": {
       padding: 15,
     },
   },
   tasks: {
-    [theme.breakpoints.up('md')]: {
-      minHeight: '25rem',
+    [theme.breakpoints.up("md")]: {
+      minHeight: "25rem",
     },
   },
   jokes: {
-    [theme.breakpoints.up('md')]: {
-      minHeight: '24.9rem',
+    [theme.breakpoints.up("md")]: {
+      minHeight: "24.9rem",
     },
   },
 }));
@@ -70,28 +70,28 @@ export default function Index() {
       <Grid container>
         <Grid item container xs={12} md={6} className={classes.textContainer}>
           <Box pt={{ xs: 2, lg: 0 }}>
-            <Box color='secondary.contrastText'>
+            <Box color="secondary.contrastText">
               <Typography
-                variant='h2'
-                component='h2'
-                color='inherit'
+                variant="h2"
+                component="h2"
+                color="inherit"
                 className={classes.h2}
               >
                 A collection of small
               </Typography>
               <Typography
-                variant='h2'
-                component='h2'
-                color='inherit'
+                variant="h2"
+                component="h2"
+                color="inherit"
                 className={classes.h2}
               >
                 JavaScript projects
               </Typography>
               <Box pt={2}>
                 <Typography
-                  variant='h4'
-                  component='h3'
-                  color='inherit'
+                  variant="h4"
+                  component="h3"
+                  color="inherit"
                   className={classes.h3}
                 >
                   Created with React
@@ -100,13 +100,13 @@ export default function Index() {
             </Box>
             <Box pt={4}>
               <Button
-                variant='contained'
-                color='primary'
-                size='large'
+                variant="contained"
+                color="primary"
+                size="large"
                 startIcon={<ArrowDownwardIcon />}
                 component={Link}
                 naked
-                href='#changecolor'
+                href="#changecolor"
               >
                 Check it out!
               </Button>
@@ -120,20 +120,20 @@ export default function Index() {
         </Grid>
         <Grid container spacing={4}>
           <Grid item xs={12}>
-            <Box height={50} id='changecolor'>
-              {' '}
+            <Box height={50} id="changecolor">
+              {" "}
             </Box>
             <Paper elevation={3}>
               <Box p={3} className={classes.padding}>
                 <Box pb={2}>
                   <Box pb={1}>
-                    <Typography variant='h4' component='h2' align='center'>
+                    <Typography variant="h4" component="h2" align="center">
                       Color Changer
                     </Typography>
                   </Box>
                   <Typography
-                    variant='h6'
-                    align='center'
+                    variant="h6"
+                    align="center"
                     className={classes.subtitle}
                   >
                     Change the color theme of the whole website.
@@ -150,7 +150,7 @@ export default function Index() {
             <Paper elevation={3} className={classes.tasks}>
               <Box p={3} className={classes.padding}>
                 <Box pb={2}>
-                  <Typography variant='h4' component='h2' align='center'>
+                  <Typography variant="h4" component="h2" align="center">
                     Task List
                   </Typography>
                   <Box py={2}>
@@ -165,7 +165,7 @@ export default function Index() {
             <Paper elevation={3}>
               <Box p={3} className={classes.padding}>
                 <Box pb={2}>
-                  <Typography variant='h4' component='h2' align='center'>
+                  <Typography variant="h4" component="h2" align="center">
                     Calorie Tracker
                   </Typography>
                   <Box py={2}>
@@ -180,7 +180,7 @@ export default function Index() {
             <Paper elevation={3}>
               <Box p={3} className={classes.padding}>
                 <Box pb={2}>
-                  <Typography variant='h4' component='h2' align='center'>
+                  <Typography variant="h4" component="h2" align="center">
                     Loan Calculator
                   </Typography>
                   <Box py={2}>
@@ -197,17 +197,17 @@ export default function Index() {
                 <Box pb={2}>
                   <Box pb={1}>
                     <Typography
-                      variant='h4'
-                      component='h2'
-                      align='center'
-                      id='jokegenerator'
+                      variant="h4"
+                      component="h2"
+                      align="center"
+                      id="jokegenerator"
                     >
                       Joke Generator
                     </Typography>
                   </Box>
                   <Typography
-                    variant='h6'
-                    align='center'
+                    variant="h6"
+                    align="center"
                     className={classes.subtitle}
                   >
                     Fetch jokes from ICNDB API.
