@@ -202,7 +202,7 @@ function Layout(props) {
             <Typography variant='h6'>Github</Typography>
           </ListItemText>
         </ListItem>
-        <ListItem button component='a' href='https://github.com/ZachScroggins'>
+        <ListItem button component='a' href='https://zachscroggins.com'>
           <ListItemIcon>
             <ArrowBackIcon />
           </ListItemIcon>
