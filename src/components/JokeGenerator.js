@@ -47,7 +47,12 @@ const JokeGenerator = () => {
         <List>
           {jokes.map(joke => (
             <ListItem key={joke.id}>
-              <ListItemText primary={joke.joke} />
+              <ListItemText>
+                <p
+                  style={{ margin: 0 }}
+                  dangerouslySetInnerHTML={{ __html: joke.joke }}
+                />
+              </ListItemText>
             </ListItem>
           ))}
         </List>
