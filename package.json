@@ -9,7 +9,7 @@
     "@material-ui/icons": "latest",
     "clsx": "^1.1.1",
     "firebase": "^7.14.3",
-    "next": "^9.3.6",
+    "next": "^9.5.5",
     "prop-types": "latest",
     "react": "latest",
     "react-cookie": "^4.0.3",

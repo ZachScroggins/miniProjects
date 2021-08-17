@@ -1,26 +1,22 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import { themeColor } from '../src/components/ThemeProvider';
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <html lang='en' style={{ scrollBehavior: 'smooth' }}>
+      <Html lang='en' style={{ scrollBehavior: 'smooth' }}>
         <Head>
           <meta
             name='description'
             content='A collection of small JavaScript projects'
           />
           <meta name='theme-color' content={themeColor} />
-          <meta
-            name='viewport'
-            content='minimum-scale=1, initial-scale=1, width=device-width'
-          />
           <link
             rel='preconnect'
             href='https://fonts.googleapis.com'
-            crossOrigin
+            crossOrigin='true'
           />
           <link rel='dns-prefetch' href='https://fonts.googleapis.com' />
           <link
@@ -32,7 +28,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }
