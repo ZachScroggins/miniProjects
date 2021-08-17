@@ -1,5 +1,5 @@
 import { useState, useEffect, forwardRef } from 'react';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -194,7 +194,7 @@ const CalorieTracker = () => {
       <Grid
         container
         direction='row'
-        justify='space-between'
+        justifyContent='space-between'
         alignItems='center'
       >
         <Grid item>

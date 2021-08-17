@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import ColorContext from '../context/color/colorContext';
 import * as colors from '@material-ui/core/colors';
@@ -207,7 +207,7 @@ function ColorChanger(props) {
     const color = state[`${intent}`];
 
     return (
-      <Grid item container justify='center' xs={12} sm={6}>
+      <Grid item container justifyContent='center' xs={12} sm={6}>
         <Box>
           <Box pb={3}>
             <Typography
@@ -275,7 +275,7 @@ function ColorChanger(props) {
       <Grid container spacing={5} className={classes.root}>
         {colorPicker('primary')}
         {colorPicker('secondary')}
-        <Grid item container justify='center' xs={12} sm={6}>
+        <Grid item container justifyContent='center' xs={12} sm={6}>
           <Button
             variant='contained'
             color='primary'

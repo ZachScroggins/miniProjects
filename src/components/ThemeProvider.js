@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import ColorContext from '../context/color/colorContext';
 import {
-  createMuiTheme,
+  createTheme,
   ThemeProvider as MuiThemeProvider,
   responsiveFontSizes,
 } from '@material-ui/core/styles';
@@ -12,7 +12,7 @@ const ThemeProvider = props => {
   const { primaryMain, secondaryMain, type } = colorContext;
 
   // Create a theme instance.
-  let theme = createMuiTheme({
+  let theme = createTheme({
     palette: {
       primary: {
         main: primaryMain,
