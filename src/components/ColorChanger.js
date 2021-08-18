@@ -17,23 +17,23 @@ import {
   NoSsr,
 } from '@material-ui/core';
 
-const hues = Object.keys(colors).slice(1, 17);
-const shades = [
-  900,
-  800,
-  700,
-  600,
-  500,
-  400,
-  300,
-  200,
-  100,
-  50,
-  'A700',
-  'A400',
-  'A200',
-  'A100',
-];
+// const hues = Object.keys(colors).slice(1, 17);
+// const shades = [
+//   900,
+//   800,
+//   700,
+//   600,
+//   500,
+//   400,
+//   300,
+//   200,
+//   100,
+//   50,
+//   'A700',
+//   'A400',
+//   'A200',
+//   'A100',
+// ];
 
 const styles = theme => ({
   radio: {
@@ -111,6 +111,41 @@ function ColorChanger(props) {
     secondaryShade: 11,
   });
 
+  const hues = [
+    'red',
+    'pink',
+    'purple',
+    'deepPurple',
+    'indigo',
+    'blue',
+    'lightBlue',
+    'cyan',
+    'teal',
+    'green',
+    'lightGreen',
+    'lime',
+    'yellow',
+    'amber',
+    'orange',
+    'deepOrange',
+  ];
+  const shades = [
+    900,
+    800,
+    700,
+    600,
+    500,
+    400,
+    300,
+    200,
+    100,
+    50,
+    'A700',
+    'A400',
+    'A200',
+    'A100',
+  ];
+
   const handleChangeColor = name => event => {
     const isRgb = string =>
       /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
@@ -177,7 +212,6 @@ function ColorChanger(props) {
 
   const colorBar = color => {
     const background = theme.palette.augmentColor({ main: color });
-
     return (
       <Box pt={1}>
         <Grid container className={classes.colorBar}>
